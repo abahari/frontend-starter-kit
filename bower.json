@@ -1,0 +1,21 @@
+{
+  "name": "frontend-starter-kit",
+  "license": "MIT",
+  "authors": [
+    "amazingSurge <amazingSurge@yahoo.com>"
+  ],
+  "description": "A workflow for morden frontend development.",
+  "homepage": "https://github.com/amazingSurge/frontend-starter",
+  "keywords": [
+    "plugin",
+    "boilerplate"
+  ],
+  "main": "dist/js/index.js",
+  "dependencies": {
+  },
+  "ignore": [
+    "npm-debug.log",
+    "bower_components",
+    "node_modules"
+  ]
+}

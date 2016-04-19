@@ -1,0 +1,69 @@
+{
+  "name": "frontend-starter-kit",
+  "title": "Frontend Starter kit",
+  "version": "1.0.0",
+  "description": "A workflow for morden frontend development.",
+  "author": "amazingSurge <amazingSurge@yahoo.com>",
+  "homepage": "https://github.com/amazingSurge/frontend-starter-kit",
+  "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "start": "gulp serve",
+    "postinstall": "bower install"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "*",
+    "babel-eslint": "*",
+    "babel-preset-es2015": "*",
+    "browser-sync": "*",
+    "del": "*",
+    "eslint": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-babel": "^6.1.2",
+    "gulp-changed": "*",
+    "gulp-csscomb": "*",
+    "gulp-csslint": "*",
+    "gulp-cssnano": "*",
+    "gulp-eslint": "*",
+    "gulp-fontmin": "^0.7.4",
+    "gulp-gzip": "*",
+    "gulp-header": "*",
+    "gulp-htmllint": "*",
+    "gulp-if": "*",
+    "gulp-imagemin": "*",
+    "gulp-jscs": "*",
+    "gulp-notify": "*",
+    "gulp-plumber": "*",
+    "gulp-protractor": "*",
+    "gulp-rename": "*",
+    "gulp-sass": "*",
+    "gulp-scss-lint": "*",
+    "gulp-size": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-stylelint": "*",
+    "gulp-svg-sprite": "*",
+    "gulp-uglify": "*",
+    "gulp-util": "*",
+    "gulp-w3cjs": "*",
+    "imagemin-pngquant": "*",
+    "merge-stream": "*",
+    "psi": "*",
+    "run-sequence": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amazingSurge/frontend-starter-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/amazingSurge/frontend-starter-kit/issues"
+  },
+  "engines": {
+    "node": ">= 4.2.1",
+    "npm": ">= 3"
+  }
+}

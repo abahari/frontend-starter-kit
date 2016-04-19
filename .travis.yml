@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - "4.4"
+  - "5.10"
+  - "stable"
+sudo: false
+
+script:
+  - ./node_modules/.bin/gulp test
+
+cache:
+  directories:
+    - node_modules
+
+addons:
+  sauce_connect: true
