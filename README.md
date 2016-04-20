@@ -32,8 +32,8 @@ You will need to install [NodeJS](http://nodejs.org/).
 $ git clone https://github.com/mjnr/Simple-Boilerplate.git project
 $ cd project
 
-# Install Gulp and Bower, if you haven't already.
-$ npm install -g gulp bower
+# Install Gulp, Bower and babel-cli, if you haven't already.
+$ npm install -g gulp-cli babel-cli bower
 
 # Installs all the dependencies.
 $ npm install
@@ -73,3 +73,24 @@ $ gulp
 - `gulp images` Optimize all images.
 - `gulp svg` Create svg sprites.
 - `gulp fonts` Create fontface files.
+
+
+## Directories
+
+- `src/js` - Source files for javascript.
+- `src/scss` - Source files for css.
+- `src/svg` - Svg files for sprites.
+- `src/fonts` - ttf fonts that will generated into fontface files.
+
+Other directories:
+
+- `build` - Intermediate files produced by the development server. 
+- `dist` - The output of `gulp dist`, which contains your distribution-ready app.
+
+Main application files:
+- `src/js/index.js` - The application's entry point
+- `src/scss/style.scss` - Global styles for your application
+
+Main build files:
+
+- `gulpfile.babel.js` - Build scripts written with [gulp](http://gulpjs.com/)
