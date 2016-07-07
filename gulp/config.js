@@ -20,7 +20,7 @@ export default {
         prodSourcemap: false,
         sassIncludePaths: [],
         autoprefixer: {
-          browsers: ['last 2 versions']
+          browsers: ['last 2 versions','ie >= 9','Android >= 2.3']
         }
       },
 

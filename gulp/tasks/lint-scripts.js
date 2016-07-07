@@ -7,7 +7,10 @@ import jscs   from 'gulp-jscs';
 
 gulp.task('lint:es', () => {
   return gulp.src([config.scripts.src, config.scripts.test, config.scripts.gulp])
-    .pipe(eslint('.eslintrc'))
+    .pipe(eslint({
+      useEslintrc: true,
+      configFile: '.eslintrc.yml'
+    }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
