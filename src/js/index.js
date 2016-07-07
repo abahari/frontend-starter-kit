@@ -1,1 +1,1 @@
-import Greeting from './Greeting.js';
+import Greeting from './_Greeting.js';

@@ -1,5 +1,4 @@
 @charset "utf-8";
 
-.hello {
-	content: "world";
-}
+@import 'components/foo';
+@import 'components/bar';

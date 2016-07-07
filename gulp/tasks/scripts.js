@@ -6,17 +6,21 @@ import babel        from 'gulp-babel';
 import gulpif       from 'gulp-if';
 import sourcemaps   from 'gulp-sourcemaps';
 import handleErrors from '../util/handleErrors';
-import browserSync  from 'browser-sync';
+import browser      from 'browser-sync';
 import header       from 'gulp-header';
 import rename       from 'gulp-rename';
 import uglify       from 'gulp-uglify';
 import size         from 'gulp-size';
+import plumber      from 'gulp-plumber';
+//import filter       from 'gulp-filter';
 
 gulp.task('scripts', () => {
-  const createSourcemap = !global.production || config.scripts.prodSourcemap;
+  const createSourcemap = config.deploy || config.scripts.prodSourcemap;
 
   return gulp.src(config.scripts.src)
+    //.pipe(filter(['**/*', '!**/_*.js']))
     .on('error', handleErrors)
+    .pipe(plumber())
     .pipe(babel())
     .pipe(header(config.banner))
     .pipe(gulp.dest(config.scripts.dest))
@@ -32,12 +36,12 @@ gulp.task('scripts', () => {
     .pipe(header(config.banner))
     .pipe(gulpif(
       createSourcemap,
-      sourcemaps.write(global.production ? './' : null))
+      sourcemaps.write(config.deploy ? './' : null))
     )
     .pipe(gulp.dest(config.scripts.dest))
     .pipe(size({
       title: 'minified scripts',
       showFiles: true
     }))
-    .pipe(browserSync.stream());
+    .pipe(browser.stream());
 });

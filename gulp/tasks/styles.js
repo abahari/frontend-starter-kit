@@ -6,20 +6,21 @@ import gulpif       from 'gulp-if';
 import sourcemaps   from 'gulp-sourcemaps';
 import sass         from 'gulp-sass';
 import handleErrors from '../util/handleErrors';
-import browserSync  from 'browser-sync';
+import browser      from 'browser-sync';
 import autoprefixer from 'gulp-autoprefixer';
 import cssnano      from 'gulp-cssnano';
 import csscomb      from 'gulp-csscomb';
 import rename       from 'gulp-rename';
 import header       from 'gulp-header';
 import size         from 'gulp-size';
+import plumber      from 'gulp-plumber';
 
 gulp.task('styles', () => {
-
-  const createSourcemap = !global.production || config.styles.prodSourcemap;
+  const createSourcemap = config.deploy || config.styles.prodSourcemap;
 
   return gulp.src(config.styles.src)
     .on('error', handleErrors)
+    .pipe(plumber())
     .pipe(sass({
       outputStyle: 'nested',
       includePaths: config.styles.sassIncludePaths
@@ -43,12 +44,12 @@ gulp.task('styles', () => {
     .pipe(header(config.banner))
     .pipe(gulpif(
       createSourcemap,
-      sourcemaps.write(global.production ? './' : null))
+      sourcemaps.write(config.deploy ? './' : null))
     )
     .pipe(gulp.dest(config.styles.dest))
     .pipe(size({
       title: 'minified styles',
       showFiles: true
     }))
-    .pipe(browserSync.stream());
+    .pipe(browser.stream());
 });

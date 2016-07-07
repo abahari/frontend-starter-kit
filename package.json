@@ -1,7 +1,8 @@
 {
   "name": "frontend-starter-kit",
   "title": "Frontend Starter kit",
-  "version": "1.0.0",
+  "private": true,
+  "version":"1.0.1",
   "description": "A workflow for modern frontend development.",
   "author": "amazingSurge <amazingSurge@yahoo.com>",
   "homepage": "https://github.com/amazingSurge/frontend-starter-kit",
@@ -11,15 +12,20 @@
     "src"
   ],
   "scripts": {
-    "start": "gulp serve"
+    "prestart": "npm install",
+    "start": "gulp serve",
+    "build": "npm run prestart && gulp build",
+    "deploy": "gulp deploy",
+    "deploy:prepare": "gulp deploy:prepare",
+    "test": "gulp test"
   },
   "dependencies": {},
   "devDependencies": {
     "babel-core": "*",
-    "babel-eslint": "*",
     "babel-preset-es2015": "*",
     "browser-sync": "*",
     "del": "*",
+    "graceful-fs": "^4.1.4",
     "gulp": "*",
     "gulp-autoprefixer": "*",
     "gulp-babel": "*",
@@ -28,6 +34,7 @@
     "gulp-csslint": "*",
     "gulp-cssnano": "*",
     "gulp-eslint": "*",
+    "gulp-filter": "^4.0.0",
     "gulp-fontmin": "*",
     "gulp-gzip": "*",
     "gulp-header": "*",
@@ -36,8 +43,9 @@
     "gulp-imagemin": "*",
     "gulp-jscs": "*",
     "gulp-notify": "*",
-    "gulp-plumber": "*",
+    "gulp-plumber": "^1.1.0",
     "gulp-rename": "*",
+    "gulp-replace": "^0.5.4",
     "gulp-sass": "*",
     "gulp-scss-lint": "*",
     "gulp-size": "*",
@@ -48,7 +56,9 @@
     "gulp-util": "*",
     "gulp-w3cjs": "*",
     "imagemin-pngquant": "*",
+    "inquirer": "^1.1.1",
     "merge-stream": "*",
+    "octophant": "^1.0.1",
     "psi": "*",
     "run-sequence": "*"
   },

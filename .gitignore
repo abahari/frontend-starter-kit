@@ -7,6 +7,7 @@
 # Generated source #
 ####################
 dist/
+_build/
 
 ##########################
 # Dependency directories #

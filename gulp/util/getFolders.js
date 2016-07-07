@@ -1,6 +1,6 @@
 'use strict';
 
-import fs    from 'fs';
+import fs    from 'graceful-fs';
 import path  from 'path';
 
 export default function(dir) {

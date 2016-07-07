@@ -531,5 +531,3 @@ linters:
 
   Compass::*:
     enabled: false
-Window size: 1280 x 723
-Viewport size: 1280 x 592

@@ -2,9 +2,10 @@
 
 import gutil  from 'gulp-util';
 import notify from 'gulp-notify';
+import config from '../config';
 
 export default function(error) {
-  if (!global.production) {
+  if (!config.deploy) {
     const args = Array.prototype.slice.call(arguments);
 
     // Send error to notification center with gulp-notify
