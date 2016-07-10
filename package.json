@@ -2,7 +2,7 @@
   "name": "frontend-starter-kit",
   "title": "Frontend Starter kit",
   "private": true,
-  "version":"1.0.2",
+  "version":"1.0.3",
   "description": "A workflow for modern frontend development.",
   "author": "amazingSurge <amazingSurge@yahoo.com>",
   "homepage": "https://github.com/amazingSurge/frontend-starter-kit",
@@ -25,6 +25,7 @@
     "babel-preset-es2015": "*",
     "browser-sync": "*",
     "del": "*",
+    "esformatter": "*",
     "graceful-fs": "*",
     "gulp": "*",
     "gulp-autoprefixer": "*",
@@ -39,6 +40,8 @@
     "gulp-gzip": "*",
     "gulp-header": "*",
     "gulp-htmllint": "*",
+    "gulp-iconfont": "^8.0.1",
+    "gulp-iconfont-css": "^2.1.0",
     "gulp-if": "*",
     "gulp-imagemin": "*",
     "gulp-jscs": "*",
@@ -47,6 +50,7 @@
     "gulp-rename": "*",
     "gulp-replace": "*",
     "gulp-sass": "*",
+    "gulp-sass-unicode": "^1.0.1",
     "gulp-scss-lint": "*",
     "gulp-size": "*",
     "gulp-sourcemaps": "*",
@@ -61,8 +65,7 @@
     "octophant": "*",
     "psi": "*",
     "run-sequence": "*",
-    "through2": "*",
-    "esformatter": "*"
+    "through2": "*"
   },
   "repository": {
     "type": "git",

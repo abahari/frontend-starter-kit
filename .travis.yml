@@ -6,7 +6,7 @@ node_js:
 sudo: false
 
 script:
-  - ./node_modules/.bin/gulp test
+  - npm run test
 
 cache:
   directories:

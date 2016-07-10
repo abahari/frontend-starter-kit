@@ -20,5 +20,4 @@ gulp.task('images', () => {
     }))) // Optimize
     .pipe(gulp.dest(config.images.dest))
     .pipe(browser.stream());
-
 });

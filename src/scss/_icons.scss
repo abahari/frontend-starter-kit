@@ -1,0 +1,51 @@
+
+@font-face {
+  font-family: "icons";
+  src: url('../icons/icons.eot');
+  src: url('../icons/icons.eot?#iefix') format('eot'),
+    url('../icons/icons.woff2') format('woff2'),
+    url('../icons/icons.woff') format('woff'),
+    url('../icons/icons.ttf') format('truetype'),
+    url('../icons/icons.svg#icons') format('svg');
+}
+
+@mixin icon-styles {
+  font-family: "icons";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  // speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+  text-decoration: none;
+  text-transform: none;
+}
+
+%icon {
+  @include icon-styles;
+}
+
+@function icon-char($filename) {
+  $char: "";
+
+  @if $filename == home {
+    $char: "\E001";
+  }
+
+  @return $char;
+}
+
+@mixin icon($filename, $insert: before, $extend: true) {
+  &:#{$insert} {
+    @if $extend {
+      @extend %icon;
+    } @else {
+      @include icon-styles;
+    }
+    content: icon-char($filename);
+  }
+}
+
+.icon-home {
+  @include icon(home);
+}

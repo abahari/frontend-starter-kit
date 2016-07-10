@@ -5,6 +5,7 @@ import gulp         from 'gulp';
 import gulpif       from 'gulp-if';
 import sourcemaps   from 'gulp-sourcemaps';
 import sass         from 'gulp-sass';
+import sassUnicode  from 'gulp-sass-unicode';
 import handleErrors from '../util/handleErrors';
 import browser      from 'browser-sync';
 import autoprefixer from 'gulp-autoprefixer';
@@ -25,6 +26,7 @@ gulp.task('styles', () => {
       outputStyle: 'nested',
       includePaths: config.styles.sassIncludePaths
     }))
+    .pipe(sassUnicode())
     .pipe(csscomb('.csscomb.json'))
     .pipe(autoprefixer(config.styles.autoprefixer))
     .pipe(header(config.banner))

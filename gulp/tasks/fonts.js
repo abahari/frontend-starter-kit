@@ -14,5 +14,4 @@ gulp.task('fonts', () => {
     .pipe(fontmin())
     .pipe(gulp.dest(config.fonts.dest))
     .pipe(browser.stream());
-
 });

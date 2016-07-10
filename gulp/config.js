@@ -32,6 +32,14 @@ export default {
         gulp: './gulp/**/*.js'
       },
 
+      icons: {
+        name: 'icons',
+        template: './src/icons/templates/_icons.scss',
+        css: './src/scss/_icons.scss',
+        src: './src/icons/svg/*.svg',
+        dest: dest+'/icons',
+      },
+
       svg: {
         src: './src/svg/',
         dest: dest+'/svg'
@@ -89,6 +97,7 @@ export default {
         }
       }),
       version: pkg.version,
+      name: pkg.name,
       title: pkg.title,
       description: pkg.description,
       author: pkg.author,
