@@ -8,6 +8,7 @@
 ####################
 dist/
 _build/
+packages/
 
 ##########################
 # Dependency directories #

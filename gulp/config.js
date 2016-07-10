@@ -60,9 +60,9 @@ export default {
       },
 
       package: {
-        src: `${dest}/**/*.{html,xml,json,css,js,js.map,css.map}`,
-        dest: './package/',
-        gzip: {}
+        src: `${dest}/**/*`,
+        dest: './packages/',
+        zip: {}
       },
 
       serve: {
