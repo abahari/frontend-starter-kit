@@ -1,8 +1,9 @@
 'use strict';
 
-import gutil from 'gulp-util';
+import gutil       from 'gulp-util';
 import esformatter from 'esformatter';
-import through from 'through2';
+import through     from 'through2';
+import fs          from 'graceful-fs';
 
 export default function(options){
   return through.obj(function (file, enc, cb) {
@@ -16,6 +17,10 @@ export default function(options){
       return;
     }
 
+    if (options.config) {
+      options = JSON.parse(fs.readFileSync(options.config));
+    }
+
     try {
       file.contents = new Buffer(esformatter.format(file.contents.toString(), esformatter.rc(file.path, options)));
       this.push(file);
@@ -25,4 +30,4 @@ export default function(options){
 
     cb();
   });
-};
+}

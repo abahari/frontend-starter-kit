@@ -1,7 +1,6 @@
 'use strict';
 
-import gulp        from 'gulp';
-import sequence from 'run-sequence';
+import gulp from 'gulp';
 
 gulp.task('test', () => {
 

@@ -27,6 +27,9 @@ gulp.task('build', ['clean'], done => {
   runSequence(['styles', 'scripts', 'images', 'fonts'], done);
 });
 
+
+
+
 // Starts a BrowerSync instance
 gulp.task('serve', () => {
   browser.init({
@@ -41,6 +44,11 @@ gulp.task('serve', () => {
       links: false
     }
   });
+});
+
+// Reload browser
+gulp.task('reload', function () {
+  browser.reload();
 });
 
 // Watch files for changes

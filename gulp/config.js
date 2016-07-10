@@ -2,7 +2,6 @@
 
 import fs from 'graceful-fs';
 import minimist from 'minimist';
-import path from 'path';
 
 export default {
   getConfig: function(dest) {
@@ -16,17 +15,17 @@ export default {
 
       styles: {
         src: './src/scss/**/*.scss',
-        dest: dest+'/css',
+        dest: `${dest}/css`,
         prodSourcemap: false,
         sassIncludePaths: [],
         autoprefixer: {
-          browsers: ['last 2 versions','ie >= 9','Android >= 2.3']
+          browsers: ['last 2 versions', 'ie >= 9', 'Android >= 2.3']
         }
       },
 
       scripts: {
         src: './src/js/**/*.js',
-        dest: dest+'/js',
+        dest: `${dest}/js`,
         prodSourcemap: false,
         test: './test/**/*.js',
         gulp: './gulp/**/*.js'
@@ -37,31 +36,31 @@ export default {
         template: './src/icons/templates/_icons.scss',
         css: './src/scss/_icons.scss',
         src: './src/icons/svg/*.svg',
-        dest: dest+'/icons',
+        dest: `${dest}/icons`,
       },
 
       svg: {
         src: './src/svg/',
-        dest: dest+'/svg'
+        dest: `${dest}/svg`
       },
 
       images: {
         src: './src/images/**/*.{png,jpg,gif,svg}',
-        dest: dest+'/images'
+        dest: `${dest}/images`
       },
 
       fonts: {
         src: ['./src/fonts/**/*.ttf'],
-        dest: dest+'/fonts'
+        dest: `${dest}/fonts`
       },
 
       html: {
         src: ['./src/html/**/*'],
-        dest: dest+'/html'
+        dest: `${dest}/html`
       },
 
       package: {
-        src: dest+'/**/*.{html,xml,json,css,js,js.map,css.map}',
+        src: `${dest}/**/*.{html,xml,json,css,js,js.map,css.map}`,
         dest: './package/',
         gzip: {}
       },
@@ -70,6 +69,10 @@ export default {
         browserPort: 3000,
         UIPort: 3001,
         testPort: 3002,
+      },
+
+      pagespeed: {
+        url: 'http://url-to-your-package'
       },
 
       test: {},

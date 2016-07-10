@@ -13,41 +13,19 @@ import uglify       from 'gulp-uglify';
 import size         from 'gulp-size';
 import plumber      from 'gulp-plumber';
 import beautify     from '../util/beautify';
-//import filter       from 'gulp-filter';
+import path         from 'path';
+import notify      from 'gulp-notify';
 
 gulp.task('scripts', () => {
   const createSourcemap = config.deploy || config.scripts.prodSourcemap;
 
   return gulp.src(config.scripts.src)
-    //.pipe(filter(['**/*', '!**/_*.js']))
     .on('error', handleErrors)
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: handleErrors}))
     .pipe(babel())
     .pipe(header(config.banner))
     .pipe(beautify({
-      "lineBreak": {
-        "before": {
-          "ClassClosingBrace": "1",
-          "FunctionDeclarationClosingBrace": "1",
-          "FunctionExpressionClosingBrace": "1",
-          "CallExpression": ">=1",
-          "ReturnStatement" : "2",
-          "FunctionExpression": "2",
-          "FunctionDeclaration": "2",
-          "ClassDeclaration": "2",
-          "IfStatement": "2",
-          "ForStatement": "2",
-          "ForOfStatement": "2",
-          "ForInStatement": "2",
-        },
-        "after": {
-          "ClassClosingBrace": ">=1",
-          "FunctionExpressionOpeningBrace" : "<2",
-          "FunctionExpressionClosingBrace": ">=1",
-          "FunctionDeclarationOpeningBrace": "<2",
-          "FunctionDeclarationClosingBrace": "2",
-        }
-      }
+      config: path.join(config.paths.root, '.beautifyrc')
     }))
     .pipe(gulp.dest(config.scripts.dest))
     .pipe(size({
@@ -69,5 +47,8 @@ gulp.task('scripts', () => {
       title: 'minified scripts',
       showFiles: true
     }))
-    .pipe(browser.stream());
+    .pipe(browser.stream())
+    .pipe(notify({
+      message: 'Scripts task complete'
+    }));
 });

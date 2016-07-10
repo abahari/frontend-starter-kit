@@ -1,18 +1,17 @@
 'use strict';
 
-import config      from '../config';
-import changed     from 'gulp-changed';
-import gulp        from 'gulp';
-import gulpif      from 'gulp-if';
-import iconfont    from 'gulp-iconfont';
-import iconfontCss from 'gulp-iconfont-css';
-import browser     from 'browser-sync';
-import plumber     from 'gulp-plumber';
-import path        from 'path';
+import config       from '../config';
+import gulp         from 'gulp';
+import handleErrors from '../util/handleErrors';
+import iconfont     from 'gulp-iconfont';
+import iconfontCss  from 'gulp-iconfont-css';
+import plumber      from 'gulp-plumber';
+import path         from 'path';
+import notify       from 'gulp-notify';
 
 gulp.task('icons', () => {
   return gulp.src(config.icons.src)
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: handleErrors}))
     .pipe(iconfontCss({
       fontName: config.icons.name,
       path: config.icons.template,
@@ -26,5 +25,8 @@ gulp.task('icons', () => {
       normalize: false,
       timestamp: 0 // see https://github.com/fontello/svg2ttf/issues/33
     }))
-    .pipe(gulp.dest(config.icons.dest));
+    .pipe(gulp.dest(config.icons.dest))
+    .pipe(notify({
+      message: 'Icons task complete'
+    }));
 });

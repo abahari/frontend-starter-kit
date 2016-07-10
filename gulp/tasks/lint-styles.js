@@ -18,15 +18,16 @@ gulp.task('lint:scss', () => {
     .pipe(scsslint({
       config: '.scss-lint.yml'
     }))
-    .pipe(csslint.failReporter());
+    .pipe(scsslint.failReporter());
 });
 
 gulp.task('lint:style', () => {
   return gulp.src([config.styles.dest])
     .pipe(stylelint({
       config: '.stylelintrc',
-      reporters: [
-        {formatter: 'string', console: true}
-      ]
+      reporters: [{
+        formatter: 'string',
+        console: true
+      }]
     }));
 });

@@ -3,22 +3,23 @@
 import config from '../config';
 import gulp   from 'gulp';
 import eslint from 'gulp-eslint';
-import jscs   from 'gulp-jscs';
+import jshint from 'gulp-jshint';
 
 gulp.task('lint:es', () => {
-  return gulp.src([config.scripts.src, config.scripts.test, config.scripts.gulp])
+  return gulp.src([config.scripts.src, config.scripts.dest, config.scripts.test, config.scripts.gulp])
     .pipe(eslint({
       useEslintrc: true,
-      configFile: '.eslintrc.yml'
+      configFile: '.eslintrc.yml',
+      fix: true
     }))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('lint:jscs', () => {
+gulp.task('lint:js', () => {
   return gulp.src([config.scripts.src, config.scripts.test, config.scripts.gulp])
-    .pipe(jscs({
-      configPath: '.jscsrc'
+    .pipe(jshint({
+      lookup: true
     }))
-    .pipe(jscs.reporter());
+    .pipe(jshint.reporter('default'));
 });

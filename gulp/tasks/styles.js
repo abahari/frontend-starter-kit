@@ -15,13 +15,14 @@ import rename       from 'gulp-rename';
 import header       from 'gulp-header';
 import size         from 'gulp-size';
 import plumber      from 'gulp-plumber';
+import notify       from 'gulp-notify';
 
 gulp.task('styles', () => {
   const createSourcemap = config.deploy || config.styles.prodSourcemap;
 
   return gulp.src(config.styles.src)
     .on('error', handleErrors)
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: handleErrors}))
     .pipe(sass({
       outputStyle: 'nested',
       includePaths: config.styles.sassIncludePaths
@@ -53,5 +54,8 @@ gulp.task('styles', () => {
       title: 'minified styles',
       showFiles: true
     }))
-    .pipe(browser.stream());
+    .pipe(browser.stream())
+    .pipe(notify({
+      message: 'Styles task complete'
+    }));
 });
