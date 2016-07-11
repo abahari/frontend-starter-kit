@@ -6,6 +6,9 @@ import runSequence from 'run-sequence';
 import config      from './gulp/config';
 import browser     from 'browser-sync';
 import onlyScripts from './gulp/util/scriptFilter';
+import help        from 'gulp-help';
+
+help(gulp);
 
 const tasks = fs.readdirSync('./gulp/tasks/').filter(onlyScripts);
 
@@ -26,8 +29,6 @@ tasks.forEach((task) => {
 gulp.task('build', ['clean'], done => {
   runSequence(['styles', 'scripts', 'images', 'fonts'], done);
 });
-
-
 
 
 // Starts a BrowerSync instance
@@ -70,3 +71,5 @@ gulp.task('default', [], done => {
   }
   done();
 });
+
+

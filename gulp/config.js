@@ -49,6 +49,15 @@ export default {
         dest: `${dest}/images`
       },
 
+      favicons: {
+        src: './src/favicon.png',
+        dest: `${dest}/favicons/`,
+        path: 'favicons/',
+        developerName: this.author,
+        developerURL: null,
+        html: `./src/html/_favicons.html`
+      },
+
       fonts: {
         src: ['./src/fonts/**/*.ttf'],
         dest: `${dest}/fonts`
