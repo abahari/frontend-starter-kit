@@ -84,6 +84,24 @@ export default {
         url: 'http://url-to-your-package'
       },
 
+      visual: {
+        dest: './screenshots',
+        desktop: {
+          src: './test/visual/**/*.{desktop,all}.js',
+          screenshots: './screenshots/desktop',
+          comparisonResultRoot: './screenshots/results/desktop',
+          failedComparisonsRoot: './screenshots/failures/desktop',
+          viewportSize: [1280, 800],
+        },
+        mobile: {
+          src: './test/visual/**/*.{mobile,all}.js',
+          screenshots: './screenshots/mobile',
+          comparisonResultRoot: './screenshots/results/mobile',
+          failedComparisonsRoot: './screenshots/failures/mobile',
+          viewportSize: [320, 480],
+        }
+      },
+
       test: {},
     };
   },

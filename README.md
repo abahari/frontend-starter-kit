@@ -28,12 +28,16 @@
 - [Chai](http://chaijs.com/)
 - [Sinon](http://sinonjs.org/)
 
+#### Visual regression testing
+- [PhantomCSS](https://github.com/Huddle/PhantomCSS)
+
 #### Coverage
 - [Istanbul](https://github.com/gotwarlost/istanbul)
 
 #### HTML
 - [Htmllint](http://htmllint.github.io)
 - [w3cjs](https://github.com/thomasdavis/w3cjs)
+- [a11y](https://addyosmani.com/a11y/)
 
 ## Instalation
 
@@ -87,8 +91,12 @@ $ gulp
 - `gulp favicons` Create favicons files.
 
 #### Tests
-- `gulp tdd` RUn tests for Test Driven Development purposes
-- `gulp test` Run tests for Continuous Integration purposes
+- `gulp tdd` RUn tests for Test Driven Development purposes.
+- `gulp test` Run tests for Continuous Integration purposes.
+
+#### Visual regression testing
+- `gulp visual` Run tests for visual regression.
+- `gulp visual:restart` Restart visual regression testing.
 
 #### coverage
 - `gulp coverage` Generate coverage report.

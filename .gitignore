@@ -9,6 +9,8 @@
 dist/
 _build/
 archives/
+results
+screenshots
 
 ##########################
 # Dependency directories #

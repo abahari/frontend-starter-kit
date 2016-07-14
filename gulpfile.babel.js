@@ -35,8 +35,9 @@ gulp.task('build', ['clean'], done => {
 gulp.task('serve', () => {
   browser.init({
     server: {
-      baseDir: config.paths.destDir
+      baseDir: config.paths.destDir,
     },
+    startPath: "html/index.html",
     port: config.serve.browserPort,
     ui: {
       port: config.serve.UIPort
