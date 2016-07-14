@@ -36,41 +36,41 @@ export default {
         template: './src/icons/templates/_icons.scss',
         css: './src/scss/_icons.scss',
         src: './src/icons/svg/*.svg',
-        dest: `${dest}/icons`,
+        dest: `${dest}/icons/`,
       },
 
       svg: {
         src: './src/svg/',
-        dest: `${dest}/svg`
+        dest: `${dest}/svg/`
       },
 
       images: {
         src: './src/images/**/*.{png,jpg,gif,svg}',
-        dest: `${dest}/images`
+        dest: `${dest}/images/`
       },
 
       favicons: {
         src: './src/favicon.png',
         dest: `${dest}/favicons/`,
-        path: 'favicons/',
+        path: '../favicons/',
         developerName: this.author,
         developerURL: null,
-        html: `./src/html/_favicons.html`
+        html: `./src/html/partials/favicons.hbs`
       },
 
       fonts: {
         src: ['./src/fonts/**/*.ttf'],
-        dest: `${dest}/fonts`
+        dest: `${dest}/fonts/`
       },
 
       html: {
-        src: ['./src/html/**/*'],
-        dest: `${dest}/html`
+        src: ['./src/html/'],
+        dest: `${dest}/html/`,
       },
 
-      package: {
+      archive: {
         src: `${dest}/**/*`,
-        dest: './packages/',
+        dest: './archives/',
         zip: {}
       },
 

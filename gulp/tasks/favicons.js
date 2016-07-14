@@ -1,6 +1,6 @@
 'use strict';
 import fs           from 'fs';
-import config       from '../config';
+import config       from '../../config';
 import favicons     from 'favicons';
 import handleErrors from '../util/handleErrors';
 import gulp         from 'gulp';

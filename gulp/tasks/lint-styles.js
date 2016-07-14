@@ -1,6 +1,6 @@
 'use strict';
 
-import config from '../config';
+import config from '../../config';
 import gulp   from 'gulp';
 import csslint from 'gulp-csslint';
 import scsslint from 'gulp-scss-lint';

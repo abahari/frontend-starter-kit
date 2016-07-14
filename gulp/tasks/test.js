@@ -2,7 +2,7 @@
 
 import { Server as KarmaServer } from 'karma';
 
-import config from '../config';
+import config from '../../config';
 import gulp from 'gulp';
 import path from 'path';
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import config       from '../config';
+import config       from '../../config';
 import gulp         from 'gulp';
 import handleErrors from '../util/handleErrors';
 import rename       from 'gulp-rename';

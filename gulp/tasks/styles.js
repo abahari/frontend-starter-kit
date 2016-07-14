@@ -1,6 +1,6 @@
 'use strict';
 
-import config       from '../config';
+import config       from '../../config';
 import gulp         from 'gulp';
 import gulpif       from 'gulp-if';
 import sourcemaps   from 'gulp-sourcemaps';

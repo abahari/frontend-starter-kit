@@ -1,6 +1,6 @@
 'use strict';
 
-import config from '../config';
+import config from '../../config';
 import {output as pagespeed} from 'psi';
 import gulp from 'gulp';
 

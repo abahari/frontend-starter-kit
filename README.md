@@ -5,6 +5,9 @@
 - [Bower](http://bower.io/) - Package Manager.
 - [Browsersync](http://www.browsersync.io/) - Watch project changes and updates browsers.
 
+#### HTML
+- [Assemble](https://github.com/assemble/assemble/)
+
 #### CSS
 - [SASS](http://sass-lang.com/)
 - [Autoprefixer](https://github.com/postcss/autoprefixer)
@@ -17,13 +20,16 @@
 #### Javascript
 - [BabelJS](https://babeljs.io/) - Javascript compiler.
 - [ESLint](http://eslint.org/)
-- [JSCS](http://jscs.info/)
+- [JSHint](http://jshint.com/)
 
 #### Test
 - [Karma](https://karma-runner.github.io/)
 - [Mocha](http://mochajs.org/)
 - [Chai](http://chaijs.com/)
 - [Sinon](http://sinonjs.org/)
+
+#### Coverage
+- [Istanbul](https://github.com/gotwarlost/istanbul)
 
 #### HTML
 - [Htmllint](http://htmllint.github.io)
@@ -39,7 +45,7 @@ $ git clone https://github.com/mjnr/Simple-Boilerplate.git project
 $ cd project
 
 # Install Gulp, Bower and babel-cli, if you haven't already.
-$ npm install -g gulp-cli babel-cli bower
+$ npm install -g gulp-cli babel-cli bower assemble
 
 # Installs all the dependencies.
 $ npm install
@@ -54,7 +60,6 @@ $ gulp
 ## Available Tasks
 - `gulp` or `gulp watch` Start watch for changes and server with Browsersync.
 - `gulp build` Run all development tasks
-- `gulp production` Run all development tasks and minify all files for production.
 - `gulp serve` Start server with Browsersync.
 - `gulp clean` Clean output directories.
 - `gulp lint` Lint everything.
@@ -63,7 +68,7 @@ $ gulp
 #### Javascript
 - `gulp scripts` Concatenate and minify JavaScript.
 - `gulp lint:es` Lint ES6 files using eslint.
-- `gulp lint:jscs` Lint Javascript files using jscs.
+- `gulp lint:js` Lint Javascript files using jshint.
 
 #### Html
 - `gulp lint:html` Lint html files using htmllint.
@@ -79,7 +84,14 @@ $ gulp
 - `gulp images` Optimize all images.
 - `gulp svg` Create svg sprites.
 - `gulp fonts` Create fontface files.
+- `gulp favicons` Create favicons files.
 
+#### Tests
+- `gulp tdd` RUn tests for Test Driven Development purposes
+- `gulp test` Run tests for Continuous Integration purposes
+
+#### coverage
+- `gulp coverage` Generate coverage report.
 
 ## Directories
 

@@ -1,6 +1,6 @@
 'use strict';
 
-import config from '../config';
+import config from '../../config';
 import gulp from 'gulp';
 import inquirer from 'inquirer';
 import replace from 'gulp-replace';
@@ -90,10 +90,11 @@ gulp.task('deploy:commit', (done) => {
 });
 
 
-gulp.task('deploy:pull', () => {
+gulp.task('deploy:pull', (done) => {
   function fail(context, msg) {
     console.error('Prepare aborted.');
     console.error(msg);
+    process.exit(1);
   }
 
   // Check for uncommitted changes
@@ -105,6 +106,6 @@ gulp.task('deploy:pull', () => {
   // Pull latest
   let gitPullResult = spawn('git', ['pull', 'origin', 'master']);
   if (gitPullResult.status !== 0) {
-    fail('There was an error running \'git pull\':\n' + gitPullResult.stderr.toString());
+    return fail('There was an error running \'git pull\':\n' + gitPullResult.stderr.toString());
   }
 });

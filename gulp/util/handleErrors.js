@@ -2,7 +2,7 @@
 
 import gutil  from 'gulp-util';
 import notify from 'gulp-notify';
-import config from '../config';
+import config from '../../config';
 
 export default function(error, ...args) {
   if (!config.deploy) {
