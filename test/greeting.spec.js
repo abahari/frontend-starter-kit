@@ -1,12 +1,9 @@
 'use strict';
 
-import { expect } from 'chai';
-import Greeting from '../src/Greeting';
+import Greeting from '../src/js/_Greeting';
 
 describe('Greeting', () => {
-
   describe('greeting.hello()', () => {
-
     it('should return welcome message for a guest user', () => {
       const greeting = new Greeting();
       const message = greeting.hello();

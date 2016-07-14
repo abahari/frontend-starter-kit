@@ -19,6 +19,12 @@
 - [ESLint](http://eslint.org/)
 - [JSCS](http://jscs.info/)
 
+#### Test
+- [Karma](https://karma-runner.github.io/)
+- [Mocha](http://mochajs.org/)
+- [Chai](http://chaijs.com/)
+- [Sinon](http://sinonjs.org/)
+
 #### HTML
 - [Htmllint](http://htmllint.github.io)
 - [w3cjs](https://github.com/thomasdavis/w3cjs)

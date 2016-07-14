@@ -7,6 +7,7 @@ import replace from 'gulp-replace';
 import runSequence from 'run-sequence';
 import octophant from 'octophant';
 import {execSync as exec} from 'child_process';
+import {spawnSync as spawn} from 'child_process';
 
 let VERSIONED_FILES = [
   'bower.json',
@@ -86,4 +87,24 @@ gulp.task('deploy:commit', (done) => {
   exec(`git tag v${NEXT_VERSION}`);
   exec('git push origin master --follow-tags');
   done();
+});
+
+
+gulp.task('deploy:pull', () => {
+  function fail(context, msg) {
+    console.error('Prepare aborted.');
+    console.error(msg);
+  }
+
+  // Check for uncommitted changes
+  let gitStatusResult = exec('git status --porcelain');
+  if (gitStatusResult.toString().length > 0) {
+    return fail(this, 'You have uncommitted changes, please stash or commit them before running prepare');
+  }
+
+  // Pull latest
+  let gitPullResult = spawn('git', ['pull', 'origin', 'master']);
+  if (gitPullResult.status !== 0) {
+    fail('There was an error running \'git pull\':\n' + gitPullResult.stderr.toString());
+  }
 });
