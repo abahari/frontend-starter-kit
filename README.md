@@ -77,6 +77,7 @@ $ gulp
 #### Html
 - `gulp lint:html` Lint html files using htmllint.
 - `gulp lint:w3c` Lint html files using w3c.
+- `gulp lint:a11y` Lint html files using a11y.
 
 #### CSS
 - `gulp styles` Compile and automatically prefix stylesheets.
@@ -88,11 +89,12 @@ $ gulp
 - `gulp images` Optimize all images.
 - `gulp svg` Create svg sprites.
 - `gulp fonts` Create fontface files.
-- `gulp favicons` Create favicons files.
+- `gulp favicons` Create favicon images.
+- `gulp icons` Create icons.
 
 #### Tests
-- `gulp tdd` RUn tests for Test Driven Development purposes.
-- `gulp test` Run tests for Continuous Integration purposes.
+- `gulp tdd` Test for Test Driven Development purposes.
+- `gulp test` Test for Continuous Integration purposes.
 
 #### Visual regression testing
 - `gulp visual` Run tests for visual regression.

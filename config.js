@@ -80,6 +80,14 @@ export default {
         testPort: 3002,
       },
 
+
+      ally: {
+        options: {
+          delay: 1,
+          viewportSize: "1200x900"
+        }
+      },
+
       pagespeed: {
         url: 'http://url-to-your-package'
       },
