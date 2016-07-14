@@ -48,7 +48,7 @@
     "gulp-fontmin": "*",
     "gulp-header": "*",
     "gulp-help": "*",
-    "gulp-htmllint": "*",
+    "gulp-htmlhint": "*",
     "gulp-iconfont": "*",
     "gulp-iconfont-css": "*",
     "gulp-if": "*",

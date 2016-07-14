@@ -35,7 +35,7 @@
 - [Istanbul](https://github.com/gotwarlost/istanbul)
 
 #### HTML
-- [Htmllint](http://htmllint.github.io)
+- [htmlhint](http://htmlhint.com)
 - [w3cjs](https://github.com/thomasdavis/w3cjs)
 - [a11y](https://addyosmani.com/a11y/)
 
@@ -75,7 +75,7 @@ $ gulp
 - `gulp lint:js` Lint Javascript files using jshint.
 
 #### Html
-- `gulp lint:html` Lint html files using htmllint.
+- `gulp lint:html` Lint html files using htmlhint.
 - `gulp lint:w3c` Lint html files using w3c.
 - `gulp lint:a11y` Lint html files using a11y.
 

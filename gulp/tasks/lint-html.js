@@ -3,7 +3,7 @@
 import config from '../../config';
 import gulp  from 'gulp';
 import w3cjs from 'gulp-w3cjs';
-import htmllint from 'gulp-htmllint';
+import htmlhint from 'gulp-htmlhint';
 import a11y from 'gulp-a11y';
 import gutil from 'gulp-util';
 
@@ -15,11 +15,12 @@ gulp.task('lint:w3c', () => {
 
 gulp.task('lint:html', () => {
   return gulp.src(config.html.dest + '**/*.html')
-    .pipe(htmllint());
+    .pipe(htmlhint('.htmlhintrc'))
+    .pipe(htmlhint.reporter());
 });
 
 gulp.task('lint:ally', () => {
   return gulp.src(config.html.dest + '**/*.html')
   .pipe(a11y(config.ally.options))
-  .pipe(a11y.reporter())
+  .pipe(a11y.reporter());
 });
