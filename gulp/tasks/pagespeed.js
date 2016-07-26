@@ -24,4 +24,4 @@ gulp.task('pagespeed:desktop', (cb) => {
   }, cb);
 });
 
-gulp.task('pagespeed', ['pagespeed:mobile', 'pagespeed:desktop']);
+gulp.task('pagespeed', gulp.series('pagespeed:mobile', 'pagespeed:desktop'));

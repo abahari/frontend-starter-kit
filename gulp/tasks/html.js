@@ -24,10 +24,10 @@ gulp.task('html:load', (cb) => {
   cb();
 });
 
-gulp.task('html', ['html:load'], () => {
+gulp.task('html', gulp.series('html:load', () => {
   return app.toStream('pages')
     .on('error', console.log)
     .pipe(app.renderFile())
     .pipe(extname('.html'))
     .pipe(app.dest(config.html.dest));
-});
+}));

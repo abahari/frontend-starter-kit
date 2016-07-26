@@ -17,7 +17,7 @@ import size         from 'gulp-size';
 import plumber      from 'gulp-plumber';
 import notify       from 'gulp-notify';
 
-gulp.task('styles', () => {
+export function styles () {
   const createSourcemap = config.deploy || config.styles.prodSourcemap;
 
   return gulp.src(config.styles.src)
@@ -58,4 +58,6 @@ gulp.task('styles', () => {
     .pipe(notify({
       message: 'Styles task complete'
     }));
-});
+}
+
+gulp.task('styles', styles);

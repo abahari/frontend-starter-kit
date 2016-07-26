@@ -4,7 +4,6 @@ import config from '../../config';
 import gulp from 'gulp';
 import inquirer from 'inquirer';
 import replace from 'gulp-replace';
-import runSequence from 'run-sequence';
 import octophant from 'octophant';
 import {execSync as exec} from 'child_process';
 import {spawnSync as spawn} from 'child_process';
@@ -16,14 +15,6 @@ let VERSIONED_FILES = [
 
 let CURRENT_VERSION = require('../../package.json').version;
 let NEXT_VERSION;
-
-gulp.task('deploy', (done) => {
-  runSequence('deploy:prompt', 'deploy:version', 'deploy:settings', 'deploy:dist', 'deploy:commit', done);
-});
-
-gulp.task('deploy:prepare', (done) => {
-  runSequence('deploy:prompt', 'deploy:version', 'deploy:settings', 'deploy:dist', done);
-});
 
 gulp.task('deploy:prompt', (done) => {
   inquirer.prompt([{
@@ -54,12 +45,11 @@ gulp.task('deploy:version', () => {
     .pipe(gulp.dest('.'));
 });
 
-// Generates compiled CSS and JS files and puts them in the dist/ folder
-gulp.task('deploy:dist', (done) => {
+gulp.task('deploy:config', (done)=>{
   config.deploy = true;
   config.init();
 
-  runSequence('styles', 'scripts', 'images', 'fonts', done);
+  done();
 });
 
 // Generates a settings file
@@ -88,7 +78,6 @@ gulp.task('deploy:commit', (done) => {
   exec('git push origin master --follow-tags');
   done();
 });
-
 
 gulp.task('deploy:pull', (done) => {
   function fail(context, msg) {

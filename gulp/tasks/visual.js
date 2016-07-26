@@ -1,10 +1,8 @@
 'use strict';
 
-
 import config from '../../config';
 import gulp from 'gulp';
 import phantomcss from 'gulp-phantomcss';
-import runSequence from 'run-sequence';
 import del    from 'del';
 
 gulp.task('visual:desktop', () => {
@@ -27,10 +25,10 @@ gulp.task('visual:mobile', () => {
     }));
 });
 
-gulp.task('visual', done => {
-  runSequence(['visual:desktop', 'visual:mobile'], done);
-});
+gulp.task('visual', gulp.series('visual:desktop', 'visual:mobile'));
 
-gulp.task('visual:restart', () => {
-  return del([config.visual.dest]);
+gulp.task('visual:restart', (done) => {
+  del.sync([config.visual.dest]);
+
+  done();
 });

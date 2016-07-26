@@ -2,34 +2,23 @@
 
 import fs          from 'graceful-fs';
 import gulp        from 'gulp';
-import runSequence from 'run-sequence';
 import config      from './config';
 import browser     from 'browser-sync';
 import onlyScripts from './gulp/util/scriptFilter';
-import help        from 'gulp-help';
-
-help(gulp);
 
 const tasks = fs.readdirSync('./gulp/tasks/').filter(onlyScripts);
-
-// Ensure process ends after all Gulp tasks are finished
-// gulp.on('stop', () => {
-//   if (!global.isWatching) {
-//     process.nextTick(() => {
-//       process.exit(0);
-//     });
-//   }
-// });
 
 tasks.forEach((task) => {
   require('./gulp/tasks/' + task);
 });
 
 // Build the files
-gulp.task('build', ['clean'], done => {
-  runSequence(['styles', 'scripts', 'images', 'fonts'], done);
-});
+gulp.task('build', gulp.series('clean', 'styles', 'scripts', 'images', 'fonts'));
 
+// Generates compiled CSS and JS files and puts them in the dist/ folder
+gulp.task('deploy:dist', gulp.series('styles', 'scripts', 'images', 'fonts'));
+gulp.task('deploy:prepare', gulp.series('deploy:prompt', 'deploy:version', 'deploy:settings', 'deploy:dist'));
+gulp.task('deploy', gulp.series('deploy:prompt', 'deploy:version', 'deploy:settings', 'deploy:dist', 'deploy:commit'));
 
 // Starts a BrowerSync instance
 gulp.task('serve', () => {
@@ -55,22 +44,12 @@ gulp.task('reload', function () {
 
 // Watch files for changes
 gulp.task('watch', () => {
-  gulp.watch(config.scripts.src, ['scripts', browser.reload]);
-  gulp.watch(config.styles.src,  ['styles', browser.reload]);
-  gulp.watch(config.images.src,  ['images', browser.reload]);
-  gulp.watch(config.fonts.src,   ['fonts', browser.reload]);
-  gulp.watch(config.svg.src,     ['svg', browser.reload]);
+  gulp.watch(config.scripts.src, gulp.series('scripts', browser.reload));
+  gulp.watch(config.styles.src,  gulp.series('styles', browser.reload));
+  gulp.watch(config.images.src,  gulp.series('images', browser.reload));
+  gulp.watch(config.fonts.src,   gulp.series('fonts', browser.reload));
+  gulp.watch(config.svg.src,     gulp.series('svg', browser.reload));
 });
-
 
 // Register default task
-gulp.task('default', [], done => {
-  gulp.start('serve');
-
-  if (global.dev) {
-    gulp.start('watch');
-  }
-  done();
-});
-
-
+gulp.task('default', gulp.series('serve'));

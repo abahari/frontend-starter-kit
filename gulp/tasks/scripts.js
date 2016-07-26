@@ -16,7 +16,7 @@ import beautify     from '../util/beautify';
 import path         from 'path';
 import notify      from 'gulp-notify';
 
-gulp.task('scripts', () => {
+export function scripts () {
   const createSourcemap = config.deploy || config.scripts.prodSourcemap;
 
   return gulp.src(config.scripts.src)
@@ -51,4 +51,6 @@ gulp.task('scripts', () => {
     .pipe(notify({
       message: 'Scripts task complete'
     }));
-});
+};
+
+gulp.task('scripts', scripts);
