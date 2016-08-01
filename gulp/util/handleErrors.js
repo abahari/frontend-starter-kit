@@ -8,9 +8,9 @@ export default function(error, ...args) {
   if (!config.deploy) {
     // Send error to notification center with gulp-notify
     notify.onError({
-      title:    "Gulp",
-      subtitle: "Failure!",
-      message:  "Error: <%= error.message %>",
+      title:    'Gulp',
+      subtitle: 'Failure!',
+      message:  'Error: <%= error.message %>',
     }).apply(this, args);
 
     // Keep gulp from hanging on this task

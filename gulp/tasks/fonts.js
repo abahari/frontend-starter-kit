@@ -8,15 +8,21 @@ import browser      from 'browser-sync';
 import plumber      from 'gulp-plumber';
 import fontmin      from 'gulp-fontmin';
 import notify       from 'gulp-notify';
+import getSrcFiles  from '../util/getSrcFiles';
 
-gulp.task('fonts', () => {
-  return gulp.src(config.fonts.src)
-    .pipe(plumber({errorHandler: handleErrors}))
-    .pipe(changed(config.fonts.dest)) // Ignore unchanged files
-    .pipe(fontmin())
-    .pipe(gulp.dest(config.fonts.dest))
-    .pipe(browser.stream())
-    .pipe(notify({
-      message: 'Fonts task complete'
-    }));
-});
+export default function (src = config.fonts.src, dest = config.fonts.dest, files = config.fonts.files, message = 'Fonts task complete') {
+  return function () {
+    let srcFiles = getSrcFiles(src, files);
+
+    return gulp.src(srcFiles)
+      .pipe(plumber({errorHandler: handleErrors}))
+      .pipe(changed(dest)) // Ignore unchanged files
+      .pipe(fontmin())
+      .pipe(gulp.dest(dest))
+      .pipe(browser.stream())
+      .pipe(notify({
+        message: message,
+        onLast: true
+      }));
+  };
+}

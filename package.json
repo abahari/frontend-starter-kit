@@ -2,7 +2,7 @@
   "name": "frontend-starter-kit",
   "title": "Frontend Starter kit",
   "private": true,
-  "version":"1.0.6",
+  "version":"1.1",
   "description": "A workflow for modern frontend development.",
   "author": "amazingSurge <amazingSurge@yahoo.com>",
   "homepage": "https://github.com/amazingSurge/frontend-starter-kit",
@@ -20,6 +20,7 @@
     "test": "gulp test"
   },
   "devDependencies": {
+    "argv": "*",
     "assemble": "*",
     "babel-cli": "*",
     "babel-core": "*",
@@ -86,11 +87,15 @@
     "merge-stream": "*",
     "mkdirp": "*",
     "mocha": "*",
+    "node-notifier": "*",
     "octophant": "*",
+    "path-exists": "*",
     "phantomjs-prebuilt": "*",
     "psi": "*",
     "sinon": "*",
     "sinon-chai": "*",
+    "stylelint-config-bootstrap": "*",
+    "stylelint-scss": "*",
     "through2": "*",
     "watchify": "*"
   },

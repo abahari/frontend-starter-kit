@@ -45,7 +45,7 @@ You will need to install [NodeJS](http://nodejs.org/).
 
 ```sh
 # Clone the repository.
-$ git clone https://github.com/mjnr/Simple-Boilerplate.git project
+$ git clone git@github.com:amazingSurge/frontend-starter-kit.git project
 $ cd project
 
 # Install Gulp, Bower and babel-cli, if you haven't already.
@@ -53,6 +53,9 @@ $ npm install -g gulp-cli babel-cli bower assemble
 
 # Installs all the dependencies.
 $ npm install
+
+# gulp-scss-lint plugin requires Ruby and scss-lint
+$ gem install scss_lint
 
 # Installs all packages.
 $ bower install
@@ -69,21 +72,25 @@ $ gulp
 - `gulp lint` Lint everything.
 - `gulp pagespeed` Run PageSpeed Insights.
 
+#### Html
+- `gulp html` Complie handlebar templates into html files.
+- `gulp lint:html` Lint html files using htmlhint.
+- `gulp lint:w3c` Lint html files using w3c.
+- `gulp lint:a11y` Lint html files using a11y.
+- `gulp clean:html` Clean out distribution html files.
+
 #### Javascript
 - `gulp scripts` Concatenate and minify JavaScript.
 - `gulp lint:es` Lint ES6 files using eslint.
 - `gulp lint:js` Lint Javascript files using jshint.
-
-#### Html
-- `gulp lint:html` Lint html files using htmlhint.
-- `gulp lint:w3c` Lint html files using w3c.
-- `gulp lint:a11y` Lint html files using a11y.
+- `gulp clean:scripts` Clean out distribution javascript files.
 
 #### CSS
 - `gulp styles` Compile and automatically prefix stylesheets.
 - `gulp lint:css` Lint css files using csslint.
 - `gulp lint:scss` Lint scss files using scsslint.
 - `gulp lint:style` Lint css files using stylelint.
+- `gulp clean:styles` Clean out distribution stylesheets files.
 
 #### Assets
 - `gulp images` Optimize all images.
@@ -98,16 +105,24 @@ $ gulp
 
 #### Visual regression testing
 - `gulp visual` Run tests for visual regression.
-- `gulp visual:restart` Restart visual regression testing.
+- `gulp clean:visual` Clean out visual regression testing screenshots and results files.
 
-#### coverage
+#### Coverage
 - `gulp coverage` Generate coverage report.
 
-## Directories
+##### Standalone file tasks
+- `gulp html --page=index.hbs`
+- `gulp scripts --file=index.js`
+- `gulp styles --file=styles.scss`
+- `gulp svgs --folder=example`
 
+## Directories
+- `src/html` - Source files for html.
 - `src/js` - Source files for javascript.
 - `src/scss` - Source files for css.
-- `src/svg` - Svg files for sprites.
+- `src/svgs` - Svg files for sprites.
+- `src/images` - Source files for images.
+- `src/icons` - Source files for icons.
 - `src/fonts` - ttf fonts that will generated into fontface files.
 
 Other directories:

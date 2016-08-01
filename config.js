@@ -4,17 +4,19 @@ import fs from 'graceful-fs';
 import minimist from 'minimist';
 
 export default {
-  getConfig: function(dest) {
+  getConfig: function(src, dest) {
     return {
       // basic locations
       paths: {
         root: './',
-        srcDir: './src/',
-        destDir: dest,
+        srcDir: `${src}/`,
+        destDir: `${dest}/`,
       },
 
       styles: {
-        src: './src/scss/**/*.scss',
+        files: '**/*.scss',
+        src: `${src}/scss`,
+
         dest: `${dest}/css`,
         prodSourcemap: false,
         sassIncludePaths: [],
@@ -24,48 +26,51 @@ export default {
       },
 
       scripts: {
-        src: './src/js/**/*.js',
+        files: '**/*.js',
+        src: `${src}/js`,
         dest: `${dest}/js`,
         prodSourcemap: false,
-        test: './test/**/*.js',
-        gulp: './gulp/**/*.js'
+        test: './test',
+        gulp: './gulp'
       },
 
       icons: {
         name: 'icons',
-        template: './src/icons/templates/_icons.scss',
-        css: './src/scss/_icons.scss',
-        src: './src/icons/svg/*.svg',
+        template: `${src}/icons/templates/_icons.scss`,
+        css: `${src}/scss/_icons.scss`,
+        src: `${src}/icons/svg/*.svg`,
         dest: `${dest}/icons/`,
       },
 
-      svg: {
-        src: './src/svg/',
-        dest: `${dest}/svg/`
+      svgs: {
+        src: `${src}/svgs/`,
+        dest: `${dest}/svgs/`
       },
 
       images: {
-        src: './src/images/**/*.{png,jpg,gif,svg}',
-        dest: `${dest}/images/`
+        files: '**/*.{png,jpg,gif,svg}',
+        src: `${src}/images`,
+        dest: `${dest}/images`
       },
 
       favicons: {
-        src: './src/favicon.png',
-        dest: `${dest}/favicons/`,
+        src: `${src}/favicon.png`,
+        dest: `${dest}/favicons`,
         path: '../favicons/',
         developerName: this.author,
         developerURL: null,
-        html: `./src/html/partials/favicons.hbs`
+        html: `${src}/html/partials/favicons.hbs`
       },
 
       fonts: {
-        src: ['./src/fonts/**/*.ttf'],
-        dest: `${dest}/fonts/`
+        files: '**/*.ttf',
+        src: `${src}/fonts`,
+        dest: `${dest}/fonts`
       },
 
       html: {
-        src: ['./src/html/'],
-        dest: `${dest}/html/`,
+        src: `${src}/html`,
+        dest: `${dest}/html`,
       },
 
       archive: {
@@ -94,18 +99,15 @@ export default {
 
       visual: {
         dest: './screenshots',
+        results: 'results',
+        failures: 'failures',
+        src: './test/visual',
         desktop: {
-          src: './test/visual/**/*.{desktop,all}.js',
-          screenshots: './screenshots/desktop',
-          comparisonResultRoot: './screenshots/results/desktop',
-          failedComparisonsRoot: './screenshots/failures/desktop',
+          files: '**/*.{desktop,all}.js',
           viewportSize: [1280, 800],
         },
         mobile: {
-          src: './test/visual/**/*.{mobile,all}.js',
-          screenshots: './screenshots/mobile',
-          comparisonResultRoot: './screenshots/results/mobile',
-          failedComparisonsRoot: './screenshots/failures/mobile',
+          files: '**/*.{mobile,all}.js',
           viewportSize: [320, 480],
         }
       },
@@ -149,9 +151,10 @@ export default {
       this.deploy = false;
     }
 
-    const dest = this.deploy? 'dist': '_build';
+    let src = 'src';
+    let dest = this.deploy? 'dist': '_build';
 
-    Object.assign(this, this.getConfig(dest));
+    Object.assign(this, this.getConfig(src, dest));
 
     return this;
   }

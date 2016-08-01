@@ -1,33 +1,36 @@
 'use strict';
-import assemble from 'assemble';
-import config   from '../../config';
-import path     from 'path';
-import gulp     from 'gulp';
-import extname  from 'gulp-extname';
+import assemble     from 'assemble';
+import config       from '../../config';
+import extname      from 'gulp-extname';
+import getSrcFiles  from '../util/getSrcFiles';
+import notify       from 'gulp-notify';
 
 let app = assemble();
 
 /**
  * Tasks for loading and rendering our templates
  */
-gulp.task('html:load', (cb) => {
+export default function (src = config.html.src, dest = config.html.dest, pages = '*.hbs', message = 'Html task complete') {
   app.option('layout', 'default');
 
-  app.src(`${config.html.src}**/*.hbs`);
+  app.src(`${src}/**/*.hbs`);
+  app.partials(`${src}/partials/*.hbs`);
+  app.layouts(`${src}/layouts/*.hbs`);
+  app.data(`${src}/data/*.{json,yml}`);
+  app.helpers(`${src}/helpers/*.js`);
+  app.pages(`${src}/pages/*.hbs`);
 
-  app.partials(`${config.html.src}partials/*.hbs`);
-  app.layouts(`${config.html.src}layouts/*.hbs`);
-  app.data(`${config.html.src}data/*.{json,yml}`);
-  app.helpers(`${config.html.src}helpers/*.js`);
-  app.pages(`${config.html.src}pages/*.hbs`);
+  return function() {
+    let srcFiles = getSrcFiles(`${src}/pages`, pages, 'page');
 
-  cb();
-});
-
-gulp.task('html', gulp.series('html:load', () => {
-  return app.toStream('pages')
-    .on('error', console.log)
-    .pipe(app.renderFile())
-    .pipe(extname('.html'))
-    .pipe(app.dest(config.html.dest));
-}));
+    return app.src(srcFiles)
+      .on('error', console.log)
+      .pipe(app.renderFile())
+      .pipe(extname('.html'))
+      .pipe(app.dest(dest))
+      .pipe(notify({
+        message: message,
+        onLast: true
+      }));
+  };
+}

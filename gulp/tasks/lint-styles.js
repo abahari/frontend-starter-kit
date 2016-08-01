@@ -1,33 +1,43 @@
 'use strict';
 
-import config from '../../config';
-import gulp   from 'gulp';
-import csslint from 'gulp-csslint';
-import scsslint from 'gulp-scss-lint';
-import stylelint from 'gulp-stylelint';
+import config      from '../../config';
+import gulp        from 'gulp';
+import csslint     from 'gulp-csslint';
+import scsslint    from 'gulp-scss-lint';
+import stylelint   from 'gulp-stylelint';
+import getSrcFiles from '../util/getSrcFiles';
 
-gulp.task('lint:css', () => {
-  return gulp.src([config.styles.dest])
-    .pipe(csslint('.csslintrc'))
-    .pipe(csslint.reporter())
-    .pipe(csslint.reporter('fail'));
-});
+export function css(src = config.styles.dest, files = ['**/*.css', '!**/*.min.css']) {
+  return function() {
+    let srcFiles = getSrcFiles(src, files);
 
-gulp.task('lint:scss', () => {
-  return gulp.src([config.styles.src])
-    .pipe(scsslint({
-      config: '.scss-lint.yml'
-    }))
-    .pipe(scsslint.failReporter());
-});
+    return gulp.src(srcFiles)
+      .pipe(csslint('.csslintrc'))
+      .pipe(csslint.reporter());
+  };
+}
 
-gulp.task('lint:style', () => {
-  return gulp.src([config.styles.dest])
-    .pipe(stylelint({
-      config: '.stylelintrc',
-      reporters: [{
-        formatter: 'string',
-        console: true
-      }]
-    }));
-});
+export function scss(src = config.styles.src, files = '**/*.scss') {
+  return function() {
+    let srcFiles = getSrcFiles(src, files);
+
+    return gulp.src(srcFiles)
+      .pipe(scsslint({
+        config: '.scss-lint.yml'
+      }));
+  };
+}
+
+export function style(src = config.styles.src, files = '**/*.scss') {
+  return function() {
+    let srcFiles = getSrcFiles(src, files);
+
+    return gulp.src(srcFiles)
+      .pipe(stylelint({
+        reporters: [{
+          formatter: 'string',
+          console: true
+        }]
+      }));
+  };
+}

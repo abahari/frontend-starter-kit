@@ -1,12 +1,11 @@
 'use strict';
 
-import config from '../../config';
-import gulp from 'gulp';
-import inquirer from 'inquirer';
-import replace from 'gulp-replace';
+import config    from '../../config';
+import gulp      from 'gulp';
+import inquirer  from 'inquirer';
+import replace   from 'gulp-replace';
 import octophant from 'octophant';
-import {execSync as exec} from 'child_process';
-import {spawnSync as spawn} from 'child_process';
+import {execSync as exec, spawnSync as spawn} from 'child_process';
 
 let VERSIONED_FILES = [
   'bower.json',
@@ -16,7 +15,7 @@ let VERSIONED_FILES = [
 let CURRENT_VERSION = require('../../package.json').version;
 let NEXT_VERSION;
 
-gulp.task('deploy:prompt', (done) => {
+export function prompt(done) {
   inquirer.prompt([{
     type: 'input',
     name: 'version',
@@ -35,25 +34,25 @@ gulp.task('deploy:prompt', (done) => {
     }
     done();
   });
-});
+}
 
 // Bumps the version number in any file that has one
-gulp.task('deploy:version', () => {
+export function version() {
   return gulp.src(VERSIONED_FILES, { base: process.cwd() })
     //.pipe(replace(CURRENT_VERSION, NEXT_VERSION))
     .pipe(replace(/("|')version\1\s*:\s*("|')([\d.]+)\2/, `$1version$1:$2${NEXT_VERSION}$2`))
     .pipe(gulp.dest('.'));
-});
+}
 
-gulp.task('deploy:config', (done)=>{
+export function init(done) {
   config.deploy = true;
   config.init();
 
   done();
-});
+}
 
 // Generates a settings file
-gulp.task('deploy:settings', (done) => {
+export function settings(done) {
   let options = {
     title: 'Settings',
     output: './src/scss/settings/_settings.scss',
@@ -69,32 +68,35 @@ gulp.task('deploy:settings', (done) => {
   };
 
   octophant('./src/scss', options, done);
-});
+}
 
 // Writes a commit with the changes to the version numbers
-gulp.task('deploy:commit', (done) => {
+export function commit(done) {
   exec(`git commit -am "Bump to version ${NEXT_VERSION}"`);
   exec(`git tag v${NEXT_VERSION}`);
   exec('git push origin master --follow-tags');
   done();
-});
+}
 
-gulp.task('deploy:pull', (done) => {
-  function fail(context, msg) {
+export function pull(done) {
+  let fail = function (msg) {
     console.error('Prepare aborted.');
     console.error(msg);
     process.exit(1);
-  }
+  };
 
   // Check for uncommitted changes
   let gitStatusResult = exec('git status --porcelain');
   if (gitStatusResult.toString().length > 0) {
-    return fail(this, 'You have uncommitted changes, please stash or commit them before running prepare');
+    return fail('You have uncommitted changes, please stash or commit them before running prepare');
   }
 
   // Pull latest
   let gitPullResult = spawn('git', ['pull', 'origin', 'master']);
   if (gitPullResult.status !== 0) {
-    return fail('There was an error running \'git pull\':\n' + gitPullResult.stderr.toString());
+    let error = gitPullResult.stderr.toString();
+    return fail(`There was an error running 'git pull':\n${error}`);
   }
-});
+
+  return done();
+}

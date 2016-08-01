@@ -5,11 +5,13 @@ import gulp   from 'gulp';
 import zip    from 'gulp-zip';
 import notify from 'gulp-notify';
 
-gulp.task('archive', () => {
-  return gulp.src(config.archive.src)
-    .pipe(zip(`${config.version}.zip`))
-    .pipe(gulp.dest(config.archive.dest))
-    .pipe(notify({
-      message: 'Archive task complete'
-    }));
-});
+export default function (src = config.archive.src, dest = config.archive.dest, message = 'Archive task complete') {
+  return function () {
+    return gulp.src(src)
+      .pipe(zip(`${config.version}.zip`))
+      .pipe(gulp.dest(dest))
+      .pipe(notify({
+        message: message
+      }));
+  };
+}
