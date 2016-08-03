@@ -107,6 +107,7 @@ gulp.task('coverage', test({
 // Deploy
 gulp.task('deploy:prompt', deploy.prompt);
 gulp.task('deploy:version', deploy.version);
+gulp.task('deploy:message', deploy.message);
 gulp.task('deploy:init', deploy.init);
 gulp.task('deploy:settings', deploy.settings);
 gulp.task('deploy:commit', deploy.commit);
@@ -115,7 +116,7 @@ gulp.task('deploy:pull', deploy.pull);
 // Generates compiled CSS and JS files and puts them in the dist/ folder
 gulp.task('deploy:dist', gulp.series('build'));
 gulp.task('deploy:prepare', gulp.series('deploy:prompt', 'deploy:version', 'deploy:settings', 'deploy:dist'));
-gulp.task('deploy', gulp.series('deploy:prompt', 'deploy:version', 'deploy:settings', 'deploy:dist', 'deploy:commit'));
+gulp.task('deploy', gulp.series('deploy:prompt', 'deploy:version', 'deploy:settings', 'deploy:message', 'deploy:dist', 'deploy:commit'));
 
 // Archive the distrubution files into package
 gulp.task('archive', archive());

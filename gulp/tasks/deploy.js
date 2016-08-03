@@ -25,13 +25,21 @@ export function prompt(done) {
       if(input === '') {
         input = CURRENT_VERSION;
       }
-      if(/^\d*[\d.]*\d*$/.test(input)){
-        NEXT_VERSION = input;
-        return true;
-      }
-      return false;
+      return /^\d*[\d.]*\d*$/.test(input);
     }
-  },{
+  }]).then((answers) => {
+    if(answers.version === '') {
+      NEXT_VERSION = CURRENT_VERSION;
+    } else {
+      NEXT_VERSION = answers.version;
+    }
+
+    done();
+  });
+}
+
+export function message(done) {
+  inquirer.prompt([{
     type: 'input',
     name: 'message',
     message: `What message are we going to commit?`,
@@ -42,12 +50,6 @@ export function prompt(done) {
       return true;
     }
   }]).then((answers) => {
-    if(answers.version === '') {
-      NEXT_VERSION = CURRENT_VERSION;
-    } else {
-      NEXT_VERSION = answers.version;
-    }
-
     if(answers.message !== ''){
       NEXT_MESSAGE = answers.message;
     }
