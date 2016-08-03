@@ -1,17 +1,17 @@
 'use strict';
 
-import gutil  from 'gulp-util';
-import notify from 'gulp-notify';
-import config from '../../config';
+import gutil    from 'gulp-util';
+import config   from '../../config';
+import notifier from 'node-notifier';
 
 export default function(error, ...args) {
   if (!config.deploy) {
     // Send error to notification center with gulp-notify
-    notify.onError({
+    notifier.notify({
       title:    'Gulp',
       subtitle: 'Failure!',
-      message:  'Error: <%= error.message %>',
-    }).apply(this, args);
+      message:  `Error: ${error.message}`,
+    });
 
     // Keep gulp from hanging on this task
     this.emit('end');
