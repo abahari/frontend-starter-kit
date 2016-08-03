@@ -1,6 +1,6 @@
 'use strict';
 
-import Greeting from '../src/js/_Greeting';
+import Greeting from '../../src/js/_Greeting';
 
 describe('Greeting', () => {
   describe('greeting.hello()', () => {
