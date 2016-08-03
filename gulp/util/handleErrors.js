@@ -4,15 +4,15 @@ import gutil    from 'gulp-util';
 import config   from '../../config';
 import notifier from 'node-notifier';
 
-export default function(error, ...args) {
+export default function(error) {
   if (!config.deploy) {
     // Send error to notification center with gulp-notify
     notifier.notify({
-      title:    'Gulp',
+      title: config.notify.title,
       subtitle: 'Failure!',
-      message:  `Error: ${error.message}`,
+      message:  error.message,
     });
-
+    gutil.log(gutil.colors.red(error));
     // Keep gulp from hanging on this task
     this.emit('end');
   } else {

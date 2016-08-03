@@ -21,6 +21,7 @@ export default function (src = config.fonts.src, dest = config.fonts.dest, files
       .pipe(gulp.dest(dest))
       .pipe(browser.stream())
       .pipe(notify({
+        title: config.notify.title,
         message: message,
         onLast: true
       }));

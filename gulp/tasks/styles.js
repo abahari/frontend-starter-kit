@@ -60,6 +60,7 @@ export default function (src = config.styles.src, dest = config.styles.dest, fil
       }))
       .pipe(browser.stream())
       .pipe(notify({
+        title: config.notify.title,
         message: message,
         onLast: true
       }));

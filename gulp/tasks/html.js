@@ -29,6 +29,7 @@ export default function (src = config.html.src, dest = config.html.dest, pages =
       .pipe(extname('.html'))
       .pipe(app.dest(dest))
       .pipe(notify({
+        title: config.notify.title,
         message: message,
         onLast: true
       }));

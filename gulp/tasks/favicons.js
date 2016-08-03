@@ -60,7 +60,7 @@ export default function (src = config.favicons.src, dest = config.favicons.dest)
       }
 
       notifier.notify({
-        title: 'Gulp notification',
+        title: config.notify.title,
         message: 'Favicons task complete'
       });
 

@@ -28,6 +28,7 @@ export default function (src = config.images.src, dest = config.images.dest, fil
       .pipe(gulp.dest(dest))
       .pipe(browser.stream())
       .pipe(notify({
+        title: config.notify.title,
         message: message,
         onLast: true
       }));

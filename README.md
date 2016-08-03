@@ -19,6 +19,7 @@
 
 #### Javascript
 - [BabelJS](https://babeljs.io/) - Javascript compiler.
+- [rollup.js](http://rollupjs.org/) - Javascript module bundler
 - [ESLint](http://eslint.org/)
 - [JSHint](http://jshint.com/)
 
@@ -80,6 +81,7 @@ $ gulp
 - `gulp clean:html` Clean out distribution html files.
 
 #### Javascript
+- `gulp bundler` Bundle javasript modules.
 - `gulp scripts` Concatenate and minify JavaScript.
 - `gulp lint:es` Lint ES6 files using eslint.
 - `gulp lint:js` Lint Javascript files using jshint.

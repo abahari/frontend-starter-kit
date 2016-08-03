@@ -10,6 +10,7 @@ import getSrcFiles  from '../util/getSrcFiles';
 import browser      from 'browser-sync';
 import header       from 'gulp-header';
 import rename       from 'gulp-rename';
+import rollup       from 'gulp-rollup';
 import uglify       from 'gulp-uglify';
 import size         from 'gulp-size';
 import plumber      from 'gulp-plumber';
@@ -17,7 +18,29 @@ import beautify     from '../util/beautify';
 import path         from 'path';
 import notify       from 'gulp-notify';
 
-export default function (src = config.scripts.src, dest = config.scripts.dest, files = config.scripts.files, message = 'Scripts task complete') {
+export function bundler(src = config.scripts.src, dest = config.scripts.dest, entry = config.scripts.entry, files = config.scripts.files, message = 'Bundler task complete') {
+  return function () {
+    let srcFiles = getSrcFiles(src, files);
+
+    return gulp.src(srcFiles)
+      .on('error', handleErrors)
+      .pipe(plumber({errorHandler: handleErrors}))
+      .pipe(rollup({
+        entry: `${src}/${entry}`
+      }))
+      .pipe(header(config.banner))
+      .pipe(rename({
+        suffix: '.es'
+      }))
+      .pipe(gulp.dest(dest))
+      .pipe(notify({
+        title: config.notify.title,
+        message: message
+      }));
+  };
+}
+
+export function scripts(src = config.scripts.src, dest = config.scripts.dest, entry = config.scripts.entry, files = config.scripts.files, message = 'Scripts task complete') {
   const createSourcemap = config.deploy || config.scripts.prodSourcemap;
 
   return function () {
@@ -26,7 +49,12 @@ export default function (src = config.scripts.src, dest = config.scripts.dest, f
     return gulp.src(srcFiles)
       .on('error', handleErrors)
       .pipe(plumber({errorHandler: handleErrors}))
-      .pipe(babel())
+      .pipe(rollup({
+        entry: `${src}/${entry}`
+      }))
+      .pipe(babel({
+        plugins: ['transform-es2015-modules-umd']
+      }))
       .pipe(header(config.banner))
       .pipe(beautify({
         config: path.join(config.paths.root, '.beautifyrc')
@@ -53,6 +81,7 @@ export default function (src = config.scripts.src, dest = config.scripts.dest, f
       }))
       .pipe(browser.stream())
       .pipe(notify({
+        title: config.notify.title,
         message: message,
         onLast: true
       }));

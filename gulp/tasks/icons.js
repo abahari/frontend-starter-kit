@@ -28,6 +28,7 @@ export default function (src = config.icons.src, dest = config.icons.dest, messa
       }))
       .pipe(gulp.dest(dest))
       .pipe(notify({
+        title: config.notify.title,
         message: message,
         onLast: true
       }));

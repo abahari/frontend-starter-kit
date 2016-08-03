@@ -4,8 +4,22 @@ import fs from 'graceful-fs';
 import minimist from 'minimist';
 
 export default {
-  getConfig: function(src, dest) {
+  getConfig: function(pkg, src, dest) {
     return {
+      version: pkg.version,
+      name: pkg.name,
+      title: pkg.title,
+      description: pkg.description,
+      author: pkg.author,
+      banner: `/**
+* ${pkg.title}
+* ${pkg.description}
+* Compiled: ${Date()}
+* @version v${pkg.version}
+* @link ${pkg.homepage}
+* @copyright ${pkg.license}
+*/
+`,
       // basic locations
       paths: {
         root: './',
@@ -26,6 +40,7 @@ export default {
       },
 
       scripts: {
+        entry: 'index.js',
         files: '**/*.js',
         src: `${src}/js`,
         dest: `${dest}/js`,
@@ -79,12 +94,13 @@ export default {
         zip: {}
       },
 
-      serve: {
+      browser: {
+        baseDir: `${dest}`,
+        startPath: "html/index.html",
         browserPort: 3000,
         UIPort: 3001,
         testPort: 3002,
       },
-
 
       ally: {
         options: {
@@ -111,6 +127,9 @@ export default {
           viewportSize: [320, 480],
         }
       },
+      notify: {
+        title: pkg.title
+      },
 
       test: {},
     };
@@ -119,28 +138,13 @@ export default {
   init: function() {
     const pkg = JSON.parse(fs.readFileSync('./package.json', { encoding: 'utf-8' }));
 
-    this.banner = `/**
-* ${pkg.title}
-* ${pkg.description}
-* Compiled: ${Date()}
-* @version v${pkg.version}
-* @link ${pkg.homepage}
-* @copyright ${pkg.license}
-*/
-`;
-
     Object.assign(this, {
       args: minimist(process.argv.slice(2), {
         string: 'env',
         default: {
           env: process.env.NODE_ENV || 'dev'
         }
-      }),
-      version: pkg.version,
-      name: pkg.name,
-      title: pkg.title,
-      description: pkg.description,
-      author: pkg.author,
+      })
     });
 
     if (this.args.env === 'dev') {
@@ -154,7 +158,7 @@ export default {
     let src = 'src';
     let dest = this.deploy? 'dist': '_build';
 
-    Object.assign(this, this.getConfig(src, dest));
+    Object.assign(this, this.getConfig(pkg, src, dest));
 
     return this;
   }

@@ -11,6 +11,7 @@ export default function (src = config.archive.src, dest = config.archive.dest, m
       .pipe(zip(`${config.version}.zip`))
       .pipe(gulp.dest(dest))
       .pipe(notify({
+        title: config.notify.title,
         message: message
       }));
   };

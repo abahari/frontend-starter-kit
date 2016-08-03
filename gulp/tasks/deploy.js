@@ -14,6 +14,7 @@ let VERSIONED_FILES = [
 
 let CURRENT_VERSION = require('../../package.json').version;
 let NEXT_VERSION;
+let NEXT_MESSAGE;
 
 export function prompt(done) {
   inquirer.prompt([{
@@ -24,13 +25,31 @@ export function prompt(done) {
       if(input === '') {
         input = CURRENT_VERSION;
       }
-      return /^\d*[\d.]*\d*$/.test(input);
+      if(/^\d*[\d.]*\d*$/.test(input)){
+        NEXT_VERSION = input;
+        return true;
+      }
+      return false;
+    }
+  },{
+    type: 'input',
+    name: 'message',
+    message: `What message are we going to commit?`,
+    validate: function (input) {
+      if(input === '' && NEXT_VERSION === CURRENT_VERSION) {
+        return false;
+      }
+      return true;
     }
   }]).then((answers) => {
     if(answers.version === '') {
       NEXT_VERSION = CURRENT_VERSION;
     } else {
       NEXT_VERSION = answers.version;
+    }
+
+    if(answers.message !== ''){
+      NEXT_MESSAGE = answers.message;
     }
     done();
   });
@@ -72,7 +91,15 @@ export function settings(done) {
 
 // Writes a commit with the changes to the version numbers
 export function commit(done) {
-  exec(`git commit -am "Bump to version ${NEXT_VERSION}"`);
+  let message = `Bump to version ${NEXT_VERSION}`;
+
+  if(NEXT_VERSION === CURRENT_VERSION) {
+    message = NEXT_MESSAGE;
+  } else {
+    message = `${message}; ${NEXT_MESSAGE}`;
+  }
+  exec('git add .');
+  exec(`git commit -am "${message}"`);
   exec(`git tag v${NEXT_VERSION}`);
   exec('git push origin master --follow-tags');
   done();
