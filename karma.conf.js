@@ -20,16 +20,9 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      "src/js/**/*.js": ["browserify"],
-      "test/spec/**/*.spec.js": ["browserify", "coverage"]
+      "src/js/**/*.js": ["browserify", "coverage"],
+      "test/spec/**/*.spec.js": ["browserify"]
     },
-
-    // babelPreprocessor: {
-    //   options: {
-    //     presets: ['es2015'],
-    //   }
-    // },
-
 
     // Browserify configuration
     // The coverage command goes here instead of the preprocessor because we need it to work with browserify
@@ -37,7 +30,7 @@ module.exports = function(config) {
       debug: true,
       transform: [
         [
-          'babelify',{
+          'babelify', {
             presets: 'es2015'
           }
         ], [
@@ -112,8 +105,7 @@ module.exports = function(config) {
       'karma-phantomjs-launcher',
       'karma-mocha-reporter',
       'karma-browserify',
-      'karma-coverage',
-      'karma-babel-preprocessor'
+      'karma-coverage'
     ],
 
     // Continuous Integration mode
