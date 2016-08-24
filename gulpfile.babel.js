@@ -14,9 +14,14 @@ import images            from './gulp/tasks/images';
 import styles            from './gulp/tasks/styles';
 import {bundler,scripts} from './gulp/tasks/scripts';
 import html              from './gulp/tasks/html';
-import * as lintHtml     from './gulp/tasks/lint-html';
-import * as lintScripts  from './gulp/tasks/lint-scripts';
-import * as lintStyles   from './gulp/tasks/lint-styles';
+import w3cjs             from './gulp/tasks/w3cjs';
+import htmlhint          from './gulp/tasks/htmlhint';
+import a11y              from './gulp/tasks/a11y';
+import eslint            from './gulp/tasks/eslint';
+import jshint            from './gulp/tasks/jshint';
+import csslint           from './gulp/tasks/csslint';
+import scsslint          from './gulp/tasks/scsslint';
+import stylelint        from './gulp/tasks/stylelint';
 import pagespeed         from './gulp/tasks/pagespeed';
 import test              from './gulp/tasks/test';
 import visual            from './gulp/tasks/visual';
@@ -55,27 +60,27 @@ gulp.task('clean', clean(config.paths.destDir));
 gulp.task('build', gulp.series('clean', 'styles', 'bundler', 'scripts', 'images', 'icons', 'fonts', 'svgs', 'html'));
 
 // Lint html
-gulp.task('lint:w3c', lintHtml.w3c());
-gulp.task('lint:html', lintHtml.html());
-gulp.task('lint:ally', lintHtml.ally());
+gulp.task('w3cjs', w3cjs());
+gulp.task('htmlhint', htmlhint());
+gulp.task('a11y', a11y());
 
 // Lint Scripts
-gulp.task('lint:es:src', lintScripts.es(config.scripts.src));
-gulp.task('lint:es:dest', lintScripts.es(config.scripts.dest));
-gulp.task('lint:es:test', lintScripts.es(config.scripts.test));
-gulp.task('lint:es:gulp', lintScripts.es(config.scripts.gulp, {rules: {'no-console': 'off'}}));
-gulp.task('lint:es', gulp.series('lint:es:src', 'lint:es:dest', 'lint:es:test', 'lint:es:gulp'));
+gulp.task('eslint:src', eslint(config.scripts.src));
+gulp.task('eslint:dest', eslint(config.scripts.dest));
+gulp.task('eslint:test', eslint(config.scripts.test));
+gulp.task('eslint:gulp', eslint(config.scripts.gulp, {rules: {'no-console': 'off'}}));
+gulp.task('eslint', gulp.series('eslint:src', 'eslint:dest', 'eslint:test', 'eslint:gulp'));
 
-gulp.task('lint:js:src', lintScripts.js(config.scripts.src));
-gulp.task('lint:js:dest', lintScripts.js(config.scripts.dest));
-gulp.task('lint:js:test', lintScripts.js(config.scripts.test));
-gulp.task('lint:js:gulp', lintScripts.js(config.scripts.gulp));
-gulp.task('lint:js', gulp.series('lint:js:src', 'lint:js:dest', 'lint:js:test', 'lint:js:gulp'));
+gulp.task('jshint:src', jshint(config.scripts.src));
+gulp.task('jshint:dest', jshint(config.scripts.dest));
+gulp.task('jshint:test', jshint(config.scripts.test));
+gulp.task('jshint:gulp', jshint(config.scripts.gulp));
+gulp.task('jshint', gulp.series('jshint:src', 'jshint:dest', 'jshint:test', 'jshint:gulp'));
 
 // Lint Styles
-gulp.task('lint:css', lintStyles.css());
-gulp.task('lint:scss', lintStyles.scss());
-gulp.task('lint:style', lintStyles.style());
+gulp.task('csslint', csslint());
+gulp.task('scsslint', scsslint());
+gulp.task('stylelint', stylelint());
 
 // PageSpeed
 gulp.task('pagespeed:mobile', pagespeed({strategy: 'mobile'}));

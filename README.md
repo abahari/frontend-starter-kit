@@ -75,23 +75,23 @@ $ gulp
 
 #### Html
 - `gulp html` Complie handlebar templates into html files.
-- `gulp lint:html` Lint html files using htmlhint.
-- `gulp lint:w3c` Lint html files using w3c.
-- `gulp lint:a11y` Lint html files using a11y.
+- `gulp htmlhint` Lint html files using htmlhint.
+- `gulp w3cjs` Lint html files using w3c.
+- `gulp a11y` Lint html files using a11y.
 - `gulp clean:html` Clean out distribution html files.
 
 #### Javascript
 - `gulp bundler` Bundle javasript modules.
 - `gulp scripts` Concatenate and minify JavaScript.
-- `gulp lint:es` Lint ES6 files using eslint.
-- `gulp lint:js` Lint Javascript files using jshint.
+- `gulp eslint` Lint ES6 files using eslint.
+- `gulp jshint` Lint Javascript files using jshint.
 - `gulp clean:scripts` Clean out distribution javascript files.
 
 #### CSS
 - `gulp styles` Compile and automatically prefix stylesheets.
-- `gulp lint:css` Lint css files using csslint.
-- `gulp lint:scss` Lint scss files using scsslint.
-- `gulp lint:style` Lint css files using stylelint.
+- `gulp csslint` Lint css files using csslint.
+- `gulp scsslint` Lint scss files using scsslint.
+- `gulp stylelint` Lint css files using stylelint.
 - `gulp clean:styles` Clean out distribution stylesheets files.
 
 #### Assets

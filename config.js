@@ -102,7 +102,7 @@ export default {
         testPort: 3002,
       },
 
-      ally: {
+      a11y: {
         options: {
           delay: 1,
           viewportSize: "1200x900"
