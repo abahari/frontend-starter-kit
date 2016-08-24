@@ -88,6 +88,14 @@ export default {
         dest: `${dest}/html`,
       },
 
+      assemble: {
+        partials: 'partials',
+        layouts: 'layouts',
+        data:  'data',
+        helpers: 'helpers',
+        pages: 'pages'
+      },
+
       archive: {
         src: `${dest}/**/*`,
         dest: './archives/',

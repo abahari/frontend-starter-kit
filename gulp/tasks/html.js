@@ -14,14 +14,14 @@ export default function (src = config.html.src, dest = config.html.dest, pages =
   app.option('layout', 'default');
 
   app.src(`${src}/**/*.hbs`);
-  app.partials(`${src}/partials/*.hbs`);
-  app.layouts(`${src}/layouts/*.hbs`);
-  app.data(`${src}/data/*.{json,yml}`);
-  app.helpers(`${src}/helpers/*.js`);
-  app.pages(`${src}/pages/*.hbs`);
+  app.partials(`${src}/${config.assemble.partials}/*.hbs`);
+  app.layouts(`${src}/${config.assemble.layouts}/*.hbs`);
+  app.data(`${src}/${config.assemble.data}/*.{json,yml}`);
+  app.helpers(`${src}/${config.assemble.helpers}/*.js`);
+  app.pages(`${src}/${config.assemble.pages}/*.hbs`);
 
   return function() {
-    let srcFiles = getSrcFiles(`${src}/pages`, pages, 'page');
+    let srcFiles = getSrcFiles(`${src}/${config.assemble.pages}`, pages, 'page');
 
     return app.src(srcFiles)
       .on('error', console.log)
