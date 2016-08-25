@@ -11,6 +11,6 @@ export default function (src = config.styles.dest, files = ['**/*.css', '!**/*.m
 
     return gulp.src(srcFiles)
       .pipe(csslint('.csslintrc'))
-      .pipe(csslint.reporter());
+      .pipe(csslint.formatter());
   };
 }
