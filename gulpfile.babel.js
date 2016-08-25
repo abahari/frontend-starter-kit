@@ -36,7 +36,7 @@ gulp.task('images', images());
 gulp.task('clean:images', clean(config.images.dest));
 
 gulp.task('icons', icons());
-gulp.task('clean: icons', clean(config.icons.dest));
+gulp.task('clean:icons', clean(config.icons.dest));
 
 gulp.task('fonts', fonts());
 gulp.task('clean:fonts', clean(config.fonts.dest));
@@ -54,10 +54,10 @@ gulp.task('clean:scripts', clean(config.scripts.dest));
 gulp.task('html', html());
 gulp.task('clean:html', clean(config.html.dest));
 
-gulp.task('clean', clean(config.paths.destDir));
+gulp.task('clean', gulp.series('clean:styles', 'clean:scripts', 'clean:images', 'clean:icons', 'clean:fonts', 'clean:svgs', 'clean:favicons', 'clean:html'));
 
 // Build the files
-gulp.task('build', gulp.series('clean', 'styles', 'bundler', 'scripts', 'images', 'icons', 'fonts', 'svgs', 'html'));
+gulp.task('build', gulp.series('clean', 'styles', 'bundler', 'scripts', 'images', 'icons', 'fonts', 'svgs', 'favicons', 'html'));
 
 // Lint html
 gulp.task('w3cjs', w3cjs());
