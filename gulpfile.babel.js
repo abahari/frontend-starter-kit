@@ -21,7 +21,8 @@ import eslint            from './gulp/tasks/eslint';
 import jshint            from './gulp/tasks/jshint';
 import csslint           from './gulp/tasks/csslint';
 import scsslint          from './gulp/tasks/scsslint';
-import stylelint        from './gulp/tasks/stylelint';
+import stylelint         from './gulp/tasks/stylelint';
+import * as assets       from './gulp/tasks/assets';
 import pagespeed         from './gulp/tasks/pagespeed';
 import test              from './gulp/tasks/test';
 import visual            from './gulp/tasks/visual';
@@ -54,10 +55,14 @@ gulp.task('clean:scripts', clean(config.scripts.dest));
 gulp.task('html', html());
 gulp.task('clean:html', clean(config.html.dest));
 
+gulp.task('assets:scripts', assets.scripts());
+gulp.task('assets:styles', assets.scripts());
+gulp.task('assets', gulp.series('assets:styles', 'assets:scripts'));
+
 gulp.task('clean', gulp.series('clean:styles', 'clean:scripts', 'clean:images', 'clean:icons', 'clean:fonts', 'clean:svgs', 'clean:favicons', 'clean:html'));
 
 // Build the files
-gulp.task('build', gulp.series('clean', 'styles', 'bundler', 'scripts', 'images', 'icons', 'fonts', 'svgs', 'favicons', 'html'));
+gulp.task('build', gulp.series('clean', 'styles', 'bundler', 'scripts', 'assets', 'images', 'icons', 'fonts', 'svgs', 'favicons', 'html'));
 
 // Lint html
 gulp.task('w3cjs', w3cjs());

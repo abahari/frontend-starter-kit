@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "jquery.js": {
+      "bower": ["jquery"]
+    }
+  }
+}

@@ -11,7 +11,7 @@ export default {
       title: pkg.title,
       description: pkg.description,
       author: pkg.author,
-      banner: `/**
+      banner: `/*!
 * ${pkg.title}
 * ${pkg.description}
 * Compiled: ${Date()}

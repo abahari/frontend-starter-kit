@@ -3,15 +3,13 @@
 import config       from '../../config';
 import gulp         from 'gulp';
 import babel        from 'gulp-babel';
-import gulpif       from 'gulp-if';
-import sourcemaps   from 'gulp-sourcemaps';
+import minify       from '../util/minifyScripts';
 import handleErrors from '../util/handleErrors';
 import getSrcFiles  from '../util/getSrcFiles';
 import browser      from 'browser-sync';
 import header       from 'gulp-header';
 import rename       from 'gulp-rename';
 import rollup       from 'gulp-rollup';
-import uglify       from 'gulp-uglify';
 import size         from 'gulp-size';
 import plumber      from 'gulp-plumber';
 import beautify     from '../util/beautify';
@@ -64,16 +62,9 @@ export function scripts(src = config.scripts.src, dest = config.scripts.dest, en
         title: 'scripts',
         showFiles: true
       }))
-      .pipe(rename({
-        suffix: '.min'
+      .pipe(minify({
+        sourcemaps: config.deploy || config.scripts.prodSourcemap
       }))
-      .pipe(gulpif(createSourcemap, sourcemaps.init()))
-      .pipe(uglify())
-      .pipe(header(config.banner))
-      .pipe(gulpif(
-        createSourcemap,
-        sourcemaps.write(config.deploy ? './' : null))
-      )
       .pipe(gulp.dest(dest))
       .pipe(size({
         title: 'minified scripts',
