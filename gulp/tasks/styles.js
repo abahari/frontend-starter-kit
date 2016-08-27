@@ -39,7 +39,6 @@ export default function (src = config.styles.src, dest = config.styles.dest, fil
       .pipe(minify({
         sourcemaps: config.deploy || config.styles.prodSourcemap
       }))
-      .pipe(header(config.banner))
       .pipe(gulp.dest(dest))
       .pipe(size({
         title: 'minified styles',

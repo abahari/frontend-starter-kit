@@ -27,6 +27,13 @@ export default {
         destDir: `${dest}/`,
       },
 
+      assets: {
+        scripts: `${dest}/js`,
+        styles: `${dest}/css`,
+        fonts: `${dest}/fonts`,
+        images: `${dest}/images`
+      },
+
       styles: {
         files: '**/*.scss',
         src: `${src}/scss`,

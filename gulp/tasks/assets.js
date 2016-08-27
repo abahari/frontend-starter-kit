@@ -13,10 +13,13 @@ import minifyStyles  from '../util/minifyStyles';
 
 const manifest = assetBuilder('manifest.json');
 
-export function scripts (dest = config.scripts.dest, message = 'Scripts assets task complete') {
+/*
+ * Checkout http://use-asset-builder.austinpray.com/
+ */
+export function scripts (dest = config.assets.scripts, message = 'Scripts assets task complete') {
   return function () {
     let merged = merge();
-    // let srcFiles = getSrcFiles(src, files);
+
     manifest.forEachDependency('js', function(dep) {
       merged.add(
         gulp.src(dep.globs, {base: 'scripts'})
@@ -35,10 +38,10 @@ export function scripts (dest = config.scripts.dest, message = 'Scripts assets t
   };
 }
 
-export function styles (dest = config.styles.dest, message = 'Styles assets task complete') {
+export function styles (dest = config.assets.styles, message = 'Styles assets task complete') {
   return function () {
     let merged = merge();
-    // let srcFiles = getSrcFiles(src, files);
+
     manifest.forEachDependency('css', function(dep) {
       merged.add(
         gulp.src(dep.globs, {base: 'styles'})
@@ -56,3 +59,4 @@ export function styles (dest = config.styles.dest, message = 'Styles assets task
       }));
   };
 }
+

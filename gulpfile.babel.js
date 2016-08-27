@@ -56,7 +56,7 @@ gulp.task('html', html());
 gulp.task('clean:html', clean(config.html.dest));
 
 gulp.task('assets:scripts', assets.scripts());
-gulp.task('assets:styles', assets.scripts());
+gulp.task('assets:styles', assets.styles());
 gulp.task('assets', gulp.series('assets:styles', 'assets:scripts'));
 
 gulp.task('clean', gulp.series('clean:styles', 'clean:scripts', 'clean:images', 'clean:icons', 'clean:fonts', 'clean:svgs', 'clean:favicons', 'clean:html'));
