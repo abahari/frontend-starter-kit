@@ -7,56 +7,27 @@ import browser       from 'browser-sync';
 import notify        from 'gulp-notify';
 import concat        from 'gulp-concat';
 import getSrcFiles   from '../util/getSrcFiles';
-import assetBuilder  from 'asset-builder';
-import minifyScripts from '../util/minifyScripts';
-import minifyStyles  from '../util/minifyStyles';
-
-const manifest = assetBuilder('manifest.json');
+import AssetsManager from 'assets-manager';
 
 /*
- * Checkout http://use-asset-builder.austinpray.com/
+ * Checkout https://github.com/amazingSurge/assets-manager
  */
-export function scripts (dest = config.assets.scripts, message = 'Scripts assets task complete') {
-  return function () {
-    let merged = merge();
+export function copy(options = config.assets, message = 'Assets task complete') {
+  const manager = new AssetsManager('manifest.json', options);
 
-    manifest.forEachDependency('js', function(dep) {
-      merged.add(
-        gulp.src(dep.globs, {base: 'scripts'})
-          .pipe(concat(dep.name))
-          .pipe(minifyScripts())
-      );
+  return function (done) {
+    manager.copyPackages().then(()=>{
+      done();
     });
-    return merged
-      .pipe(gulp.dest(dest))
-      .pipe(browser.stream())
-      .pipe(notify({
-        title: config.notify.title,
-        message: message,
-        onLast: true
-      }));
   };
 }
 
-export function styles (dest = config.assets.styles, message = 'Styles assets task complete') {
-  return function () {
-    let merged = merge();
+export function clean(options = config.assets, message = 'Assets task complete') {
+  const manager = new AssetsManager('manifest.json', options);
 
-    manifest.forEachDependency('css', function(dep) {
-      merged.add(
-        gulp.src(dep.globs, {base: 'styles'})
-          .pipe(concat(dep.name))
-          .pipe(minifyStyles())
-      );
+  return function (done) {
+    manager.cleanPackages().then(()=>{
+      done();
     });
-    return merged
-      .pipe(gulp.dest(dest))
-      .pipe(browser.stream())
-      .pipe(notify({
-        title: config.notify.title,
-        message: message,
-        onLast: true
-      }));
   };
 }
-

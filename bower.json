@@ -1,6 +1,6 @@
 {
   "name": "frontend-starter-kit",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "license": "MIT",
   "authors": [
     "amazingSurge <amazingSurge@yahoo.com>"
@@ -15,7 +15,7 @@
   ],
   "main": "dist/js/index.js",
   "dependencies": {
-    "jquery": "^3.1.0",
+    "jquery": "^3.1.0"
   },
   "ignore": [
     "npm-debug.log",

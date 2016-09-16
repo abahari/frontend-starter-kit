@@ -28,10 +28,19 @@ export default {
       },
 
       assets: {
-        scripts: `${dest}/js`,
-        styles: `${dest}/css`,
-        fonts: `${dest}/fonts`,
-        images: `${dest}/images`
+        dest: `${dest}`,
+        dests: {
+          images: "images",
+          fonts: "fonts",
+          js: "js",
+          css: "css",
+        },
+        'dest:coffee': `${src}/coffee`,
+        'dest:es6': `${src}/es6`,
+        'dest:stylus': `${src}/stylus`,
+        'dest:less': `${src}/less`,
+        'dest:sass': `${src}/sass`,
+        'dest:scss': `${src}/scss`
       },
 
       styles: {

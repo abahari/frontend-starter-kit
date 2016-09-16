@@ -1,7 +1,15 @@
 {
-  "dependencies": {
-    "jquery.js": {
-      "bower": ["jquery"]
-    }
+  "cwd": "./",
+  "defaultRegistry": "npm",
+  "verbose": true,
+  "override": true,
+  "flattenPackages": true,
+  "flattenTypes": false,
+  "packages": {
+    "bower:jquery": [
+      true,
+    {
+      "main": "true"
+    }]
   }
 }
