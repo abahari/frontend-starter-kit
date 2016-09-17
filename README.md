@@ -40,6 +40,9 @@
 - [w3cjs](https://github.com/thomasdavis/w3cjs)
 - [a11y](https://addyosmani.com/a11y/)
 
+#### Assets
+- [assets-manager](https://github.com/amazingSurge/assets-manager)
+
 ## Instalation
 
 You will need to install [NodeJS](http://nodejs.org/).
@@ -100,6 +103,8 @@ $ gulp
 - `gulp fonts` Create fontface files.
 - `gulp favicons` Create favicon images.
 - `gulp icons` Create icons.
+- `gulp assets` Copy assets to distribution directory.
+- `gulp assets:clean` Clean out assets from distribution directory.
 
 #### Tests
 - `gulp tdd` Test for Test Driven Development purposes.
@@ -117,6 +122,8 @@ $ gulp
 - `gulp scripts --file=index.js`
 - `gulp styles --file=styles.scss`
 - `gulp svgs --folder=example`
+- `gulp assets --package=jquery`
+- `gulp assets:clean --package=jquery`
 
 ## Directories
 - `src/html` - Source files for html.

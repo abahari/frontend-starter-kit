@@ -22,7 +22,7 @@
   "devDependencies": {
     "argv": "*",
     "assemble": "*",
-    "assets-manager": "*",
+    "assets-manager": "^0.1.9",
     "babel-cli": "*",
     "babel-core": "*",
     "babel-eslint": "*",
