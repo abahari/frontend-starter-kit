@@ -8,7 +8,7 @@ import notify        from 'gulp-notify';
 import concat        from 'gulp-concat';
 import getSrcFiles   from '../util/getSrcFiles';
 import AssetsManager from 'assets-manager';
-import argv       from 'argv';
+import argv          from 'argv';
 
 function getPackage() {
   let args = argv.option([
