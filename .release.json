@@ -1,0 +1,9 @@
+{
+  "verbose": false,
+  "force": true,
+  "pkgFiles": ["package.json", "bower.json"],
+  "increment": "patch",
+  "npm": {
+    "publish": true
+  }
+}

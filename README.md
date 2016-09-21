@@ -43,6 +43,9 @@
 #### Assets
 - [assets-manager](https://github.com/amazingSurge/assets-manager)
 
+#### Release
+- [release-it](https://github.com/webpro/release-it)
+
 ## Instalation
 
 You will need to install [NodeJS](http://nodejs.org/).
@@ -116,6 +119,9 @@ $ gulp
 
 #### Coverage
 - `gulp coverage` Generate coverage report.
+
+#### Release
+- `gulp release` Bump version and release to npm and github.
 
 ##### Standalone file tasks
 - `gulp html --page=index.hbs`

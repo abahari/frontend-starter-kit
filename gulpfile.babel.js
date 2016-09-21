@@ -29,6 +29,7 @@ import visual            from './gulp/tasks/visual';
 import * as deploy       from './gulp/tasks/deploy';
 import * as browser      from './gulp/tasks/browser';
 import archive           from './gulp/tasks/archive';
+import release           from './gulp/tasks/release';
 
 gulp.task('favicons', favicons());
 gulp.task('clean:favicons', clean(config.favicons.dest));
@@ -121,6 +122,9 @@ gulp.task('deploy:init', deploy.init);
 gulp.task('deploy:settings', deploy.settings);
 gulp.task('deploy:commit', deploy.commit);
 gulp.task('deploy:pull', deploy.pull);
+
+// Release task
+gulp.task('release', release());
 
 // Generates compiled CSS and JS files and puts them in the dist/ folder
 gulp.task('deploy:dist', gulp.series('build'));
