@@ -5,8 +5,6 @@ import merge         from 'merge-stream';
 import gulp          from 'gulp';
 import browser       from 'browser-sync';
 import notify        from 'gulp-notify';
-import concat        from 'gulp-concat';
-import getSrcFiles   from '../util/getSrcFiles';
 import AssetsManager from 'assets-manager';
 import argv          from 'argv';
 
