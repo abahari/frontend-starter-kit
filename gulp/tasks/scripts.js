@@ -16,32 +16,7 @@ import beautify     from '../util/beautify';
 import path         from 'path';
 import notify       from 'gulp-notify';
 
-export function bundler(src = config.scripts.src, dest = config.scripts.dest, entry = config.scripts.entry, files = config.scripts.files, message = 'Bundler task complete') {
-  return function () {
-    let srcFiles = getSrcFiles(src, files);
-
-    return gulp.src(srcFiles)
-      .on('error', handleErrors)
-      .pipe(plumber({errorHandler: handleErrors}))
-      .pipe(rollup({
-        entry: `${src}/${entry}`,
-        globals: {
-          jquery: 'jQuery'
-        }
-      }))
-      .pipe(header(config.banner))
-      .pipe(rename({
-        suffix: '.es'
-      }))
-      .pipe(gulp.dest(dest))
-      .pipe(notify({
-        title: config.notify.title,
-        message: message
-      }));
-  };
-}
-
-export function scripts(src = config.scripts.src, dest = config.scripts.dest, entry = config.scripts.entry, files = config.scripts.files, message = 'Scripts task complete') {
+export default function scripts(src = config.scripts.src, dest = config.scripts.dest, entry = config.scripts.entry, files = config.scripts.files, message = 'Scripts task complete') {
   const createSourcemap = config.deploy || config.scripts.prodSourcemap;
 
   return function () {
@@ -53,6 +28,11 @@ export function scripts(src = config.scripts.src, dest = config.scripts.dest, en
       .pipe(rollup({
         entry: `${src}/${entry}`
       }))
+      .pipe(header(config.banner))
+      .pipe(rename({
+        suffix: '.es'
+      }))
+      .pipe(gulp.dest(dest))
       .pipe(babel({
         "plugins": [
           ["transform-es2015-modules-umd", {
@@ -65,6 +45,9 @@ export function scripts(src = config.scripts.src, dest = config.scripts.dest, en
       .pipe(header(config.banner))
       .pipe(beautify({
         config: path.join(config.paths.root, '.beautifyrc')
+      }))
+      .pipe(rename(function(path) {
+        path.basename = path.basename.replace('.es', '');
       }))
       .pipe(gulp.dest(dest))
       .pipe(size({
