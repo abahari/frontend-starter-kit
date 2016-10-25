@@ -12,7 +12,6 @@ import rename       from 'gulp-rename';
 import rollup       from 'gulp-rollup';
 import size         from 'gulp-size';
 import plumber      from 'gulp-plumber';
-import beautify     from '../util/beautify';
 import path         from 'path';
 import notify       from 'gulp-notify';
 
@@ -43,9 +42,6 @@ export default function scripts(src = config.scripts.src, dest = config.scripts.
         ]
       }))
       .pipe(header(config.banner))
-      .pipe(beautify({
-        config: path.join(config.paths.root, '.beautifyrc')
-      }))
       .pipe(rename(function(path) {
         path.basename = path.basename.replace('.es', '');
       }))

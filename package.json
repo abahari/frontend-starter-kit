@@ -4,7 +4,7 @@
   "private": true,
   "version": "1.2.5",
   "description": "A workflow for modern frontend development.",
-  "author": "amazingSurge <amazingSurge@yahoo.com>",
+  "author": "amazingSurge <amazingSurge@gmail.com>",
   "homepage": "https://github.com/amazingSurge/frontend-starter-kit",
   "license": "MIT",
   "files": [
@@ -34,7 +34,6 @@
     "browserify-istanbul": "*",
     "chai": "*",
     "del": "*",
-    "esformatter": "*",
     "favicons": "*",
     "graceful-fs": "*",
     "gulp": "github:gulpjs/gulp#4.0",
